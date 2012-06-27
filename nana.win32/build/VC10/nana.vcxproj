@@ -70,6 +70,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetName>nana_debug</TargetName>
+    <IncludePath>../../include;$(IncludePath)</IncludePath>
+    <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
+    <SourcePath>../../source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>nana_debug</TargetName>
@@ -82,6 +85,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <TargetName>nana_release</TargetName>
+    <IncludePath>../../include;$(IncludePath)</IncludePath>
+    <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
+    <SourcePath>../../source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>nana_release</TargetName>

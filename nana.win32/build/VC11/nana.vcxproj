@@ -346,85 +346,85 @@
     <OutDir>../bin/vc11/</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MTdebug|Win32'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MTdfebug|Win32'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MDdebug|Win32'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='_MDdebug|Win32'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='_MTdebug|Win32'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MTdebug|x64'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MTdfebug|x64'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MDdebug|x64'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='_MDdebug|x64'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='_MTdebug|x64'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
@@ -460,71 +460,71 @@
     <OutDir>../bin/vc11/</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MTrelease|Win32'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MDrelease|Win32'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='_MTrelease|Win32'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='_MDrelease|Win32'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MTrelease|x64'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MDrelease|x64'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='_MTrelease|x64'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='_MDrelease|x64'">
-    <TargetName>$(ProjectName)_$(Configuration)_$(EmbedManifestBy)_$(Platform)</TargetName>
-    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <IntDir>..\..\..\..\temp\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
     <IncludePath>../../include;$(IncludePath)</IncludePath>
     <LibraryPath>../../extrlib;$(LibraryPath)</LibraryPath>
     <SourcePath>../../source;$(SourcePath)</SourcePath>

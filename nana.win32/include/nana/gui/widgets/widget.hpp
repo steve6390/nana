@@ -136,81 +136,47 @@ namespace gui
 	template<typename Category, typename DrawerTrigger>
 	class widget_object: public widget
 	{
-	protected:
-		typedef DrawerTrigger drawer_trigger_t;
+	protected:		typedef DrawerTrigger drawer_trigger_t;
 	public:
-		widget_object()
-			:handle_(0)
-		{}
-
-		~widget_object()
-		{
-			if(handle_)
-				API::close_window(handle_);
-		}
-
-		bool create(window wd)
-		{
-			return create(wd, 0, 0, 0, 0, true);
-		}
-
-		bool create(window wd, bool visible)
-		{
-			return create(wd, 0, 0, 0, 0, visible);
-		}
+		 widget_object()			:handle_(0)	{}
+		~widget_object()	{	if(handle_)	API::close_window(handle_);		}
 
 		bool create(window wd, int x, int y, unsigned width, unsigned height)
-		{
-			return create(wd, x, y, width, height, true);
-		}
-
+													{		return create(wd, x, y, width, height, true);		}
+		bool create(window wd)						{		return create(wd, 0, 0, 0, 0, true);		}
+		bool create(window wd, bool visible)		{		return create(wd, 0, 0, 0, 0, visible);		}
+		bool create(window wd, rectangle r=rectangle(), bool visible=true)
+													{		return create(wd, r.x, r.y, r.width, r.height, visible);		}
 		bool create(window wd, int x, int y, unsigned width, unsigned height, bool visible)
 		{
 			if(wd && this->empty())
 			{
 				handle_ = API::dev::create_widget(wd, x, y, width,height);
-				
-				API::dev::attach_signal(handle_, *this, &widget_object::signal);
-
-				static_cast<drawer_trigger&>(trigger_).bind_window(*this);
-				API::dev::attach_drawer(handle_, trigger_);
-				if(visible)
-					API::show_window(handle_, true);
-				
+				API::dev::attach_signal		 (	handle_, *this, &widget_object::signal	);
+				static_cast<drawer_trigger&> ( trigger_ ).bind_window (*this);
+				API::dev::attach_drawer		 ( handle_, trigger_ );
+				if(visible)		API::show_window( handle_, true );
 				this->_m_complete_creation();
 			}
 			return (this->empty() == false);
 		}
 
-		window handle() const
-		{
-			return handle_;
-		}
+		window handle() const		{	return handle_;		}
 	protected:
-		DrawerTrigger& get_drawer_trigger()
-		{
-			return trigger_;
-		}
-
-		const DrawerTrigger& get_drawer_trigger() const
-		{
-			return trigger_;
-		}
+			  DrawerTrigger& get_drawer_trigger()		{			return trigger_;		}
+		const DrawerTrigger& get_drawer_trigger() const	{			return trigger_;		}
 	private:
 		void signal(int message, const detail::signals& sig)
 		{
 			switch(message)
 			{
-			case detail::signals::caption:
-				this->_m_caption(sig.info.caption);
-				break;
-			case detail::signals::destroy:
-				handle_ = 0; break;
+				case detail::signals::caption:		this->_m_caption(sig.info.caption);				break;
+				case detail::signals::destroy:		handle_ = 0;									break;
 			}
 		}
 	private:
-		window handle_;
-		DrawerTrigger trigger_;
+		window			handle_;
+		DrawerTrigger	trigger_;
 	};//end class widget_object
 
 	template<typename DrawerTrigger>

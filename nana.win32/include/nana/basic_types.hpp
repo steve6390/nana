@@ -31,7 +31,7 @@ namespace nana
 		enum mouse_action_t{mouse_action_normal, mouse_action_over, mouse_action_pressed, mouse_action_end};
 	}
 
-	typedef unsigned scalar_t;
+	typedef unsigned		scalar_t;
 	typedef unsigned char	uint8_t;
 	typedef unsigned long	uint32_t;
 	typedef unsigned		uint_t;
@@ -69,6 +69,13 @@ namespace nana
 		int x;
 		int y;
 	};
+	struct dpoint : point
+	{   dpoint(int x_, int y_): point (x_,y_) {}
+	    //dpoint operator -(point p1, point p2)
+	};
+	inline dpoint  operator -( point p1,  point p2){ return dpoint(p2.x-p1.x,p2.y-p1.y);}
+	inline 	point  operator +(dpoint p1,  point p2){ return  point(p2.x+p1.x,p2.y+p1.y);}
+	inline 	point  operator +( point p1, dpoint p2){ return  point(p2.x+p1.x,p2.y+p1.y);}
 
 	struct upoint
 	{
@@ -98,21 +105,40 @@ namespace nana
 		unsigned width;
 		unsigned height;
 	};
+	//struct dsize : size
+	//{   dsize(int width_, int height_): size (width_,height_) {}
+	//    //dsize operator -(size sz1, size sz2)
+	//};
+	//dsize operator -( size sz1,  size sz2){ return dsize(sz2.width-sz1.width,sz2.height-sz1.height);}
+	//size  operator +(dsize sz1,  size sz2){ return  size(sz2.width+sz1.width,sz2.height+sz1.height);}
+	//size  operator +( size sz1, dsize sz2){ return  size(sz2.width+sz1.width,sz2.height+sz1.height);}
+
 
 	struct rectangle
 	{
 		rectangle();
 		rectangle(int x, int y, unsigned width, unsigned height);
 		rectangle(const size &);
-		rectangle(const point&, const size&);
-
+		rectangle(const point& ori, const size&);
+		rectangle(const point& p1, const point& p2)	:x(p1.x < p2.x ? p1.x : p2.x),
+													 y(p1.y < p2.y ? p1.y : p2.y),
+													 width (abs(p2.x-p1.x)),
+													 height(abs(p2.y-p1.y)) {};
 		bool operator==(const rectangle& rhs) const;
 		bool operator!=(const rectangle& rhs) const;
+		rectangle left_at (int    dx)const{return rectangle(point (x+width+dx, y), sz());}
+		rectangle down_at (int    dy)const{return rectangle(point (x,y+height+dy), sz());}
+		rectangle new_size(size   nz){return rectangle(		 ori()			, nz  );}
+		//rectangle w (unsigned   nw){return rectangle(		 ori()			, size(nw, height)  );}
+		rectangle&  w (unsigned   nw){ width= nw; return *this; }
 
+		//rectangle shift(dpoint sh){return rectangle(point (x,y+height+dy), sz());}
 		int x;
 		int y;
 		unsigned width;
 		unsigned height;
+		point ori() const {return point (x,y);}
+		size  sz () const {return size  (width,height);}
 	};
 
 	struct arrange

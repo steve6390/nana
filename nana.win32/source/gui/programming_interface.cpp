@@ -497,6 +497,12 @@ namespace API
 		API::window_rectangle(wd, r);
 		return nana::size(r.width, r.height);
 	}
+	nana::rectangle window_rectangle(window wd)
+	{
+		nana::rectangle r;
+		API::window_rectangle(wd, r);
+		return r;
+	}
 
 	void window_size(window wd, unsigned width, unsigned height)
 	{

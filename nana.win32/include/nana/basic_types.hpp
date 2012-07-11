@@ -94,6 +94,14 @@ namespace nana
 		value_type y;
 	};
 
+	//struct dsize : size
+	//{   dsize(int width_, int height_): size (width_,height_) {}
+	//    //dsize operator -(size sz1, size sz2)
+	//};
+	//dsize operator -( size sz1,  size sz2){ return dsize(sz2.width-sz1.width,sz2.height-sz1.height);}
+	//size  operator +(dsize sz1,  size sz2){ return  size(sz2.width+sz1.width,sz2.height+sz1.height);}
+	//size  operator +( size sz1, dsize sz2){ return  size(sz2.width+sz1.width,sz2.height+sz1.height);}
+
 	struct size
 	{
 		size();
@@ -105,15 +113,8 @@ namespace nana
 		unsigned width;
 		unsigned height;
 	};
-	//struct dsize : size
-	//{   dsize(int width_, int height_): size (width_,height_) {}
-	//    //dsize operator -(size sz1, size sz2)
-	//};
-	//dsize operator -( size sz1,  size sz2){ return dsize(sz2.width-sz1.width,sz2.height-sz1.height);}
-	//size  operator +(dsize sz1,  size sz2){ return  size(sz2.width+sz1.width,sz2.height+sz1.height);}
-	//size  operator +( size sz1, dsize sz2){ return  size(sz2.width+sz1.width,sz2.height+sz1.height);}
 
-
+	// 
 	struct rectangle
 	{
 		rectangle();

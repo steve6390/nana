@@ -23,31 +23,30 @@ namespace gui
 {
 	enum class event_code
 	{
-		click,
-		dbl_click,
-		mouse_enter,
-		mouse_move,
-		mouse_leave,
-		mouse_down,
-		mouse_up,
-		mouse_wheel,
-		mouse_drop,
-		expose,
-		sizing, size,
-		move,
-		unload,
-		destroy,
-		focus,
-		key_down,
-		key_char,
-		key_up,
-		shortkey,
+		click,				///< A mouse click event.
+		dbl_click,			///< A mouse double click event.
+		mouse_enter,		        ///< A mouse enters a widget.
+		mouse_move,			///< A mouse moves over a widget.
+		mouse_leave,	    	        ///< A mouse leaves a widget.
+		mouse_down,			///< A mouse button is pressed on a widget.
+		mouse_up,			///< A mouse button is released on a widget.
+		mouse_wheel,		        ///< A mouse scrolls the wheel on a widget.
+		mouse_drop,			///< A mouse release over a window that is registered as recipient of drag and drop.
+		expose,				///< 
+		sizing, 			///< 
+		size,				///< A widget's size is changing.
+		move,				///< 
+		unload,				///< A form is closed by clicking the X button, only works for root widget.
+		destroy,			///< A widget is about to be destroyed.
+		focus,				///< A widget's focus is changed.
+		key_down,			///< A keyboard is pressed on a focus widget.
+		key_char,			///< The focus widget received a character.
+		key_up,				///< A keyboard is released on a focus widget.
+		shortkey,			///< The widgets received a shortkey message.
 
-		//Unoperational events
-		elapse,
+		elapse,				///< Unoperational events? . A widget received a tick that is sended by timer.
 
-		//End indicator, it's not an event.
-		end
+		end					///< End indicator, it's not an event.
 	};
 
 	namespace detail
@@ -68,7 +67,7 @@ namespace gui
 		{
 			mutable nana::char_t key;
 			mutable bool ignore;
-			unsigned char ctrl;
+			unsigned char ctrl;     // do we need shift ?? what about Alt ?
 		};
 
 		struct tag_wheel
@@ -80,9 +79,9 @@ namespace gui
 			bool ctrl;
 		};
 
-		struct tag_dropinfo
+		struct tag_dropinfo    // drop files ?
 		{
-			std::vector<nana::string> filenames;
+			std::vector<nana::string> filenames;    // ? what filenames? could be anyobject and associated "id"?
 			nana::point pos;
 		};
 	}//end namespace detail
@@ -91,8 +90,8 @@ namespace gui
 	//@brief:
 	struct eventinfo
 	{
-		event_code identifier;	//for identifying what event is
-		gui::window window;		//which window the event triggered on
+		event_code identifier;	//< for identifying what event is
+		gui::window window;		//< which window the event triggered on
 
 		union
 		{

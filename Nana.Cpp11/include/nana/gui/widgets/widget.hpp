@@ -25,16 +25,15 @@ namespace gui
 {
 	class drawer_trigger;
 
-	//class widget
-	//@brief: this is a abstract class for defining the capacity interface.
+	        /// Abstract class for defining the capacity interface.
 	class widget
 		: nana::noncopyable, nana::nonmovable
 	{
 		typedef void(*dummy_bool_type)(widget* (*)(const widget&));
 	public:
 		virtual ~widget();
-		virtual window handle() const = 0;
-		bool empty() const;
+		virtual window handle() const = 0;			///< Returns the handle of window, returns 0 if window is not created.
+		bool empty() const;							///< Determines whether the manipulator is handling a window.
 		void close();
 
 		window parent() const;
@@ -43,19 +42,19 @@ namespace gui
 		void caption(const nana::string& str);
 
 		void cursor(nana::gui::cursor);
-		nana::gui::cursor cursor() const;
+		nana::gui::cursor cursor() const;			///< Retrieves the shape of cursor
 
 		void typeface(const nana::paint::font& font);
 		nana::paint::font typeface() const;
 
-		bool enabled() const;
+		bool enabled() const;			           ///< Determines whether the window is enabled for mouse and keyboard input.
 		void enabled(bool);
 
 		void focus();
 		bool focused() const;
 
-		void show();
-		void hide();
+		void show();			                   ///< Sets the window visible.
+		void hide();			                   ///< Sets the window invisible.
 		bool visible() const;
 
 		nana::size size() const;
@@ -71,19 +70,19 @@ namespace gui
 		nana::color_t background() const;
 
 		template<typename Event, typename Function>
-		event_handle make_event(Function function) const
+		event_handle make_event(Function function) const                ///< Register an event callback functor.
 		{
 			return API::make_event<Event, Function>(this->handle(), function);
 		}
 
 		template<typename Event, typename Class, typename Concept>
-		event_handle make_event(Class& obj, void (Concept::*mf)(const eventinfo&)) const
+		event_handle make_event(Class& obj, void (Concept::*mf)(const eventinfo&)) const ///<  Register an event callback functor. The functor is a member function of Concept.
 		{
 			return API::make_event<Event>(this->handle(), std::bind(mf, &obj, std::placeholders::_1));
 		}
 
 		template<typename Event, typename Class, typename Concept>
-		event_handle make_event(Class& obj, void (Concept::*mf)()) const
+		event_handle make_event(Class& obj, void (Concept::*mf)()) const ///<  Register an event callback functor. The functor is a member function of Concept.
 		{
 			return API::make_event<Event>(this->handle(), std::bind(mf, &obj));
 		}
@@ -100,7 +99,7 @@ namespace gui
 			return API::bind_event<Event>(wdg.handle(), this->handle(), std::bind(mf, &obj, std::placeholders::_1));
 		}
 
-		void umake_event(event_handle eh) const;
+		void umake_event(event_handle eh) const;              ///< Deletes an event callback by a handle.
 		widget& tooltip(const nana::string&);
 
 		operator dummy_bool_type() const;
@@ -131,10 +130,9 @@ namespace gui
 		virtual nana::color_t _m_background() const;
 	};
 
-	//class widget_object
-	//@brief: defaultly a widget_tag
+            /// Base class of all the classes defined as a widget window. Defaultly a widget_tag
 	template<typename Category, typename DrawerTrigger>
-	class widget_object: public widget
+	class widget_object: public widget  
 	{
 	protected:
 		typedef DrawerTrigger drawer_trigger_t;
@@ -149,16 +147,16 @@ namespace gui
 				API::close_window(handle_);
 		}
 
-		bool create(window wd, bool visible)
+		bool create(window parent_wd, bool visible)   ///< Creates a no-size (zero-size) widget. in a widget/root window specified by parent_wd.
 		{
-			return create(wd, rectangle(), visible);
+			return create(parent_wd, rectangle(), visible);
 		}
 
-		bool create(window wd, const rectangle & r = rectangle(), bool visible = true)
+		bool create(window parent_wd, const rectangle & r = rectangle(), bool visible = true)  ///< in a widget/root window specified by parent_wd.
 		{
-			if(wd && this->empty())
+			if(parent_wd && this->empty())
 			{
-				handle_ = API::dev::create_widget(wd, r);
+				handle_ = API::dev::create_widget(parent_wd, r);
 				API::dev::attach_signal(handle_, *this, &widget_object::signal);
 				static_cast<drawer_trigger&>(trigger_).bind_window(*this);
 				API::dev::attach_drawer(handle_, trigger_);
@@ -208,6 +206,7 @@ namespace gui
 		DrawerTrigger trigger_;
 	};//end class widget_object
 
+	        /// Base class of all the classes defined as a non-graphics-buffer widget window. The second template parameter DrawerTrigger is always ignored.\see nana::gui::panel
 	template<typename DrawerTrigger>
 	class widget_object<category::lite_widget_tag, DrawerTrigger>: public widget
 	{
@@ -225,16 +224,16 @@ namespace gui
 				API::close_window(handle_);
 		}
 
-		bool create(window wd, bool visible)
+		bool create(window parent_wd, bool visible)    ///< Creates a no-size (zero-size) widget. in a widget/root window specified by parent_wd.
 		{
-			return create(wd, rectangle(), visible);
+			return create(parent_wd, rectangle(), visible);
 		}
 
-		bool create(window wd, const rectangle& r = rectangle(), bool visible = true)
+		bool create(window parent_wd, const rectangle& r = rectangle(), bool visible = true)  ///< in a widget/root window specified by parent_wd.
 		{
-			if(wd && this->empty())
+			if(parent_wd && this->empty())
 			{
-				handle_ = API::dev::create_lite_widget(wd, r);
+				handle_ = API::dev::create_lite_widget(parent_wd, r);
 				if(visible)
 					API::show_window(handle_, true);
 				this->_m_complete_creation();
@@ -269,8 +268,10 @@ namespace gui
 		window handle_;
 	};//end class widget_object
 
+
+	        /// Base class of all the classes defined as a root window. \see nana::gui::form
 	template<typename DrawerTrigger>
-	class widget_object<category::root_tag, DrawerTrigger>: public widget
+	class widget_object<category::root_tag, DrawerTrigger>: public widget 
 	{
 	protected:
 		typedef DrawerTrigger drawer_trigger_t;
@@ -385,9 +386,11 @@ namespace gui
 		DrawerTrigger trigger_;
 	};//end class widget_object<root_tag>
 
+	           /// Base class of all the classes defined as a frame window. \see nana::gui::frame
 	template<typename Drawer>
 	class widget_object<category::frame_tag, Drawer>: public widget{};
 
+	           /// Especialization. Base class of all the classes defined as a frame window. \see nana::gui::frame
 	template<>
 	class widget_object<category::frame_tag, int>: public widget
 	{
@@ -404,16 +407,16 @@ namespace gui
 				API::close_window(handle_);
 		}
 
-		bool create(window wd, bool visible)
+		bool create(window parent_wd, bool visible)    ///< Creates a no-size (zero-size) widget. in a widget/root window specified by parent_wd.
 		{
-			return create(wd, rectangle(), visible);
+			return create(parent_wd, rectangle(), visible);
 		}
-
-		bool create(window wd, const rectangle& r = rectangle(), bool visible = true)
+                 /// Creates in a widget/root window specified by parent_wd.
+		bool create(window parent_wd, const rectangle& r = rectangle(), bool visible = true)
 		{
-			if(wd && this->empty())
+			if(parent_wd && this->empty())
 			{
-				handle_ = API::dev::create_frame(wd, r);
+				handle_ = API::dev::create_frame(parent_wd, r);
 				API::dev::attach_signal(handle_, *this, &widget_object::signal);
 				API::show_window(handle_, visible);
 				this->_m_complete_creation();

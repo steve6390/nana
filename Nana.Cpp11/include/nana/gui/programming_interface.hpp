@@ -109,14 +109,14 @@ namespace API
 	nana::size	screen_size();
 	rectangle	screen_area_from_point(const point&);
 	nana::point	cursor_position();
-	rectangle make_center(unsigned width, unsigned height);
+	rectangle make_center(unsigned width, unsigned height);     ///< Retrieves a rectangle which is in the center of screen.
 	rectangle make_center(window, unsigned width, unsigned height);
 
 	void window_icon_default(const paint::image&);
 	void window_icon(window, const paint::image&);
-	bool empty_window(window);
+	bool empty_window(window);                            ///< Determines whether a window is existing.
 	native_window_type root(window);
-	window	root(native_window_type);
+	window	root(native_window_type);                     ///< Retrieves the native window of a Nana.GUI window.
 
 	void fullscreen(window, bool);
 	bool enabled_double_click(window, bool);
@@ -124,7 +124,7 @@ namespace API
 	native_window_type frame_container(window frame);
 	native_window_type frame_element(window frame, unsigned index);
 	void close_window(window);
-	void show_window(window, bool show);
+	void show_window(window, bool show);                  ///< Sets a window visible state.
 	void restore_window(window);
 	void zoom_window(window, bool ask_for_max);
 	bool visible(window);
@@ -208,20 +208,20 @@ namespace API
 	nana::size window_size(window);
 	void window_size(window, unsigned width, unsigned height);
 	bool window_rectangle(window, rectangle& rect);
-	bool track_window_size(window, const nana::size&, bool true_for_max);
+	bool track_window_size(window, const nana::size&, bool true_for_max);   ///< Sets the minimum or maximum tracking size of a window.
 	void window_enabled(window, bool);
 	bool window_enabled(window);
 
 	/**	@brief	A widget drawer draws the widget surface in answering an event. this function will tell the drawer to copy the graphics into window after event answering.
 	 */
-	void lazy_refresh();
+	void lazy_refresh();                               ///< Tells Nana.GUI refresh the event window after the event is processed.
 
 	/**	@brief:	calls refresh() of a widget's drawer. if currently state is lazy_refresh, Nana.GUI may paste the drawing on the window after an event processing.
 	 *	@param window: specify a window to be refreshed.
 	 */
-	void refresh_window(window);
+	void refresh_window(window);                       ///< Refreshs the window and display it immediately.
 	void refresh_window_tree(window);
-	void update_window(window);
+	void update_window(window);                        ///< Copies the off-screen buffer to the screen for immediate display.
 
 	void window_caption(window, const nana::string& title);
 	nana::string window_caption(window);
@@ -240,9 +240,9 @@ namespace API
 	void focus_window(window);
 
 	window	capture_window();
-	window	capture_window(window, bool);
-	void	capture_ignore_children(bool ignore);
-	void modal_window(window);
+	window	capture_window(window, bool);         ///< Enables or disables the window to grab the mouse input
+	void	capture_ignore_children(bool ignore); ///< Enables or disables the captured window whether redirects the mouse input to its children if the mouse is over its children.
+	void modal_window(window);                    ///< Blocks the routine til the specified window is closed.
 
 	color_t foreground(window);
 	color_t foreground(window, color_t);
@@ -261,13 +261,14 @@ namespace API
 	void caret_visible(window, bool is_show);
 	bool caret_visible(window);
 
-	void tabstop(window);
+	void tabstop(window);                       ///< Sets the window that owns the tabstop.
 	void eat_tabstop(window, bool);
-	window move_tabstop(window, bool next);
+	window move_tabstop(window, bool next);     ///< Sets the focus to the window which tabstop is near to the specified window.
 
 	bool glass_window(window);			//deprecated
 	bool glass_window(window, bool);	//deprecated
 
+	/// Sets the window active state. If a window is active state is false, the window will not obtain the focus when a mouse clicks on it.
 	void take_active(window, bool has_active, window take_if_has_active_false);
 
 	bool window_graphics(window, nana::paint::graphics&);
@@ -277,8 +278,8 @@ namespace API
 	void typeface(window, const nana::paint::font&);
 	paint::font typeface(window);
 
-	bool calc_screen_point(window, point&);
-	bool calc_window_point(window, point&);
+	bool calc_screen_point(window, point&);   ///<Converts window coordinates to screen coordinates
+	bool calc_window_point(window, point&);   ///<Converts screen coordinates to window coordinates.
 
 	window find_window(const nana::point& mspos);
 

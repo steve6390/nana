@@ -59,6 +59,10 @@
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
+    <Filter Include="Doxygen-docs">
+      <UniqueIdentifier>{1db41224-f02a-48b3-b343-1cf4ac3ae563}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\any.cpp">
       <Filter>Source Files</Filter>
@@ -285,8 +289,37 @@
     <ClCompile Include="..\..\source\gui\element.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\gui\detail\window_layout.cpp">
-      <Filter>Source Files\gui\detail</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\Readme.txt" />
+    <Text Include="..\..\..\docs\Doxigen\Doxigen-source\7-Impl Button.md">
+      <Filter>Doxygen-docs</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\2-Hello World.markdown">
+      <Filter>Doxygen-docs</Filter>
+    </None>
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\1-Introduction.markdown">
+      <Filter>Doxygen-docs</Filter>
+    </None>
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\3-Getting Started.markdown">
+      <Filter>Doxygen-docs</Filter>
+    </None>
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\4-Desing.markdown">
+      <Filter>Doxygen-docs</Filter>
+    </None>
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\5- Creating Forms.md">
+      <Filter>Doxygen-docs</Filter>
+    </None>
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\6- Events.md">
+      <Filter>Doxygen-docs</Filter>
+    </None>
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\8-NoUIBlock.md">
+      <Filter>Doxygen-docs</Filter>
+    </None>
   </ItemGroup>
 </Project>

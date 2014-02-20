@@ -165,6 +165,16 @@
     <ClCompile Include="..\..\source\traits.cpp" />
     <ClCompile Include="..\..\source\unicode_bidi.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\docs\Doxigen\Doxigen-source\7-Impl Button.md" />
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\3-Getting Started.markdown" />
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\2-Hello World.markdown" />
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\1-Introduction.markdown" />
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\4-Desing.markdown" />
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\5- Creating Forms.md" />
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\6- Events.md" />
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\8-NoUIBlock.md" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

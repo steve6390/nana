@@ -124,9 +124,9 @@ namespace gui
 					if((tv != align_v::top) && extent_v_pixels < graph.height())
 					{
 						if(align_v::center == tv)
-							rs.pos.y = (graph.height() - extent_v_pixels) >> 1;
+							rs.pos.y = (graph.height() - extent_v_pixels) >> 1; // warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
 						else if(align_v::bottom == tv)
-							rs.pos.y = graph.height() - extent_v_pixels;
+							rs.pos.y = graph.height() - extent_v_pixels; //warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
 					}
 					else
 						rs.pos.y = 0;

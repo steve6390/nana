@@ -1021,9 +1021,9 @@ namespace nana{	namespace gui
 						{
 							room = i->u.room_ptr->second;
 							if(room.first > dimension.first - l)
-								room.first = dimension.first - l;
+								room.first = dimension.first - l;//warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
 							if(room.second > dimension.second - c)
-								room.second = dimension.second - c;
+								room.second = dimension.second - c;//warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
 						}
 
 						window wd = nullptr;

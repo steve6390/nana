@@ -1482,16 +1482,12 @@ namespace gui
 
 				void trigger::check(node_type* node, checkstate cs)
 				{
-					//The ROOT node is not operational and leave the user-node independent
-					if(nullptr == node->owner)
-						return;
-
-					if(checkstate::unchecked != cs)
+                                        if (!node->owner) return;   /// SUPER NODE, have no value. Keep independent "user-Roots" added with insert
+					                            /// The ROOT node is not operational and leave the user-node independent
+					if(cs != checkstate::unchecked )
 						cs = checkstate::checked;
-
 					//Return if thay are same.
-					if(node->value.second.checked == cs)
-						return;
+                                        if (node->value.second.checked == cs)   return;
 
 					//First, check the children of node, it prevents the use of
 					//unactualized child nodes during "on_checked".
@@ -1508,8 +1504,9 @@ namespace gui
 					//Then, change the parent node check state
 					node_type * owner = node->owner;
 
-					//Make sure that the owner is not the ROOT node.
-					while(owner && owner->owner)
+					while(owner->owner)   /// SUPER NODE, have no value. Keep independent "user-Roots" added with insert
+					                      /// Make sure that the owner is not the ROOT node.
+
 					{
 						std::size_t len_checked = 0;
 						std::size_t size = 0;

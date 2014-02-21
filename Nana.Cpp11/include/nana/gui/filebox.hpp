@@ -15,7 +15,7 @@ namespace nana{	namespace gui
 		/**	@brief	specify a title for the dialog
 		 *	@param	string	a text for title
 		 */
-		nana::string title(nana::string);
+		nana::string title( nana::string );
 
 		/**	@brief	specify a suggestion directory
 		 *	@param	string	a path of initial directory
@@ -24,6 +24,15 @@ namespace nana{	namespace gui
 		filebox& init_path(const nana::string&);
 		filebox& init_file(const nana::string&);
 		filebox& add_filter(const nana::string& description, const nana::string& filetype);
+
+        using filtres = std::vector<std::pair<nana::string, nana::string>>;
+        filebox& add_filter(const filtres &ftres)
+        {
+            for (auto &f : ftres)
+                add_filter(f.first, f.second);
+            return *this;
+        };
+
 
 		nana::string path() const;
 		nana::string file() const;

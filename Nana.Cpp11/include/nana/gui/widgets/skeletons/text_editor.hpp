@@ -41,6 +41,25 @@ namespace nana{	namespace gui{	namespace widgets
 			void border_renderer(std::function<void(nana::paint::graphics&)>);
 
 			void load(const char*);
+			void store(const char* tfs) ;
+			void store(const char* tfs, nana::unicode encoding);
+
+            std::string filename() const
+            {
+                return textbase_.filename() ;
+            }
+
+            bool edited() const
+            {
+                return textbase_.edited();
+            }
+
+            bool saved() const
+            {
+                return textbase_.saved() ;
+            }
+
+            void set_unchanged();
 
 			//text_area
 			//@return: Returns true if the area of text is changed.

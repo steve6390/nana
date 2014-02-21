@@ -98,8 +98,9 @@ namespace nana{ namespace gui{
 		ext_event_type & ext_event() const;
 
 		void load(const nana::char_t* file);
-		void store(const nana::char_t* file) const;
-		void store(const nana::char_t* file, nana::unicode encoding) const;
+		void store(const nana::char_t* file)  ;
+		void store(const nana::char_t* file, nana::unicode encoding) ;
+		textbox& reset (const nana::string& newtext = STR("") );
 
 		/// The file of last store operation.
 		std::string filename() const;
@@ -110,8 +111,8 @@ namespace nana{ namespace gui{
 		/// Determine whether the changed text has been saved into the file.
 		bool saved() const;
 
-		bool getline(std::size_t n, nana::string&) const;
-		textbox& append(const nana::string&, bool at_caret);
+		bool getline(std::size_t line_index, nana::string&) const;
+		textbox& append(const nana::string& text, bool at_caret);
 		textbox& border(bool);
 
 		/// Determine whether the text is multi-line enabled.

@@ -60,6 +60,10 @@ namespace nana{ namespace gui
 			_m_hold_factory(new factory<TooltipWindow>);
 		}
 
+		tooltip(){}
+		tooltip(window w, const nana::string &tip){set(w,tip);}
+
+
 		static void set(window, const nana::string&);
 		static void show(window, int x, int y, const nana::string&);
 		static void close();

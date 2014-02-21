@@ -59,6 +59,7 @@
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
+  <ItemGroup>
     <Filter Include="Doxygen-docs">
       <UniqueIdentifier>{1db41224-f02a-48b3-b343-1cf4ac3ae563}</UniqueIdentifier>
     </Filter>
@@ -283,6 +284,9 @@
     <ClCompile Include="..\..\source\gui\animation.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\gui\filebox.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\source\gui\effects.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
@@ -291,34 +295,26 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\Readme.txt" />
-    <Text Include="..\..\..\docs\Doxigen\Doxigen-source\7-Impl Button.md">
+    <Text Include="..\..\..\docs\Doxigen\Doxigen-source\04-Impl Button.md">
       <Filter>Doxygen-docs</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
-
+    <ClCompile Include="..\..\source\gui\detail\window_layout.cpp">
+      <Filter>Source Files\gui\detail</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\2-Hello World.markdown">
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\05-NoUIBlock.md">
       <Filter>Doxygen-docs</Filter>
     </None>
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\1-Introduction.markdown">
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\01-Introduction.md">
       <Filter>Doxygen-docs</Filter>
     </None>
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\3-Getting Started.markdown">
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\02-Getting Started.md">
       <Filter>Doxygen-docs</Filter>
     </None>
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\4-Desing.markdown">
-      <Filter>Doxygen-docs</Filter>
-    </None>
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\5- Creating Forms.md">
-      <Filter>Doxygen-docs</Filter>
-    </None>
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\6- Events.md">
-      <Filter>Doxygen-docs</Filter>
-    </None>
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\8-NoUIBlock.md">
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\03-Desing.md">
       <Filter>Doxygen-docs</Filter>
     </None>
   </ItemGroup>

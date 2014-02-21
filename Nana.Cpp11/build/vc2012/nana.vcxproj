@@ -88,6 +88,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\demo\calculator.cpp" />
+    <ClCompile Include="..\..\..\demo\subclass.cpp" />
+    <ClCompile Include="..\..\..\demo\widget_show\demo.cpp11.cpp" />
     <ClCompile Include="..\..\source\any.cpp" />
     <ClCompile Include="..\..\source\audio\detail\audio_device.cpp" />
     <ClCompile Include="..\..\source\audio\detail\audio_stream.cpp" />
@@ -113,8 +116,9 @@
     <ClCompile Include="..\..\source\gui\detail\window_manager.cpp" />
     <ClCompile Include="..\..\source\gui\dragger.cpp" />
     <ClCompile Include="..\..\source\gui\drawing.cpp" />
-    <ClCompile Include="..\..\source\gui\effects.cpp" />
     <ClCompile Include="..\..\source\gui\element.cpp" />
+    <ClCompile Include="..\..\source\gui\filebox.cpp" />
+    <ClCompile Include="..\..\source\gui\effects.cpp" />
     <ClCompile Include="..\..\source\gui\functional.cpp" />
     <ClCompile Include="..\..\source\gui\layout.cpp" />
     <ClCompile Include="..\..\source\gui\layout_utility.cpp" />
@@ -166,14 +170,11 @@
     <ClCompile Include="..\..\source\unicode_bidi.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\docs\Doxigen\Doxigen-source\7-Impl Button.md" />
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\3-Getting Started.markdown" />
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\2-Hello World.markdown" />
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\1-Introduction.markdown" />
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\4-Desing.markdown" />
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\5- Creating Forms.md" />
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\6- Events.md" />
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\8-NoUIBlock.md" />
+    <Text Include="..\..\..\docs\Doxigen\Doxigen-source\04-Impl Button.md" />
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\02-Getting Started.md" />
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\01-Introduction.md" />
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\03-Desing.md" />
+    <None Include="..\..\..\docs\Doxigen\Doxigen-source\05-NoUIBlock.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

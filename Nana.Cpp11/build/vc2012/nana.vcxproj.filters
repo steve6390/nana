@@ -55,15 +55,9 @@
     <Filter Include="Source Files\audio\detail">
       <UniqueIdentifier>{a79b050a-0183-46ee-b263-1a6dcd8e53e2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\temp">
-      <UniqueIdentifier>{15d4f5aa-f0ee-4fe2-a59a-3c70f93b6579}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\temp">
-      <UniqueIdentifier>{13cd0eb3-eedb-482d-96f6-3846bb13e047}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Doxygen-docs">
-      <UniqueIdentifier>{1db41224-f02a-48b3-b343-1cf4ac3ae563}</UniqueIdentifier>
-    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\any.cpp">
@@ -294,94 +288,8 @@
     <ClCompile Include="..\..\source\gui\element.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\temp\CompoWidget.cpp">
-      <Filter>Source Files\temp</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\temp\EditableForm.cpp">
-      <Filter>Source Files\temp</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\temp\Numer.cpp">
-      <Filter>Source Files\temp</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\temp\Units.cpp">
-      <Filter>Source Files\temp</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\temp\vplace.cpp">
-      <Filter>Source Files\temp</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\..\ReadME - solution config.md" />
-    <Text Include="..\..\..\temp_rest.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\temp\EditableForm.hpp">
-      <Filter>Header Files\temp</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\temp\Numer.hpp">
-      <Filter>Header Files\temp</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\temp\Units.hpp">
-      <Filter>Header Files\temp</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\temp\vplace.hpp">
-      <Filter>Header Files\temp</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\temp\NoValue.h">
-      <Filter>Header Files\temp</Filter>
-    </ClInclude>
     <ClCompile Include="..\..\source\gui\detail\window_layout.cpp">
       <Filter>Source Files\gui\detail</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\..\docs\Doxigen\Doxigen-source\Doxygen.button.h">
-      <Filter>Doxygen-docs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\docs\Doxigen\Doxigen-source\Doxygen.menu.h">
-      <Filter>Doxygen-docs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\docs\Doxigen\Doxigen-source\Doxygen.listbox.h">
-      <Filter>Doxygen-docs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\docs\Doxigen\Doxigen-source\Doxygen.categorize.h">
-      <Filter>Doxygen-docs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\docs\Doxigen\Doxigen-source\Doxygen.examples.h">
-      <Filter>Doxygen-docs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\docs\Doxigen\Doxigen-source\00-Main.h">
-      <Filter>Doxygen-docs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\docs\Doxigen\Doxigen-source\Doxygen.combox.h">
-      <Filter>Doxygen-docs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\docs\Doxigen\Doxigen-source\Doxygen.slider.h">
-      <Filter>Doxygen-docs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\docs\Doxigen\Doxigen-source\Doxygen.tabbar.h">
-      <Filter>Doxygen-docs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\docs\Doxigen\Doxigen-source\Doxygen.textbox.h">
-      <Filter>Doxygen-docs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\docs\Doxigen\Doxigen-source\Doxygen.treebox.h">
-      <Filter>Doxygen-docs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\docs\Doxigen\Doxigen-source\Doxygen.place.h">
-      <Filter>Doxygen-docs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\docs\Doxigen\Doxigen-source\Doxygen.label.h">
-      <Filter>Doxygen-docs</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\01-Introduction.md">
-      <Filter>Doxygen-docs</Filter>
-    </None>
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\02-Getting Started.md">
-      <Filter>Doxygen-docs</Filter>
-    </None>
-    <None Include="..\..\..\docs\Doxigen\Doxigen-source\03-Advanced.md">
-      <Filter>Doxygen-docs</Filter>
-    </None>
   </ItemGroup>
 </Project>

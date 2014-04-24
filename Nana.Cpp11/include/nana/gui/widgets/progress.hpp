@@ -52,8 +52,9 @@ namespace gui
 			}; //end class drawer
 		}
 	}//end namespace drawerbase
-
-	class progress
+       /// \brief A progressbar widget with two styles: know, and unknow amount value (goal). 
+       /// In unknow style the amount is ignored and the bar is scrolled when value change.
+	class progress 
 		: public widget_object<category::widget_tag, drawerbase::progress::trigger>
 	{
 	public:

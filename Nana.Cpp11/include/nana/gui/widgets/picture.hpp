@@ -55,7 +55,7 @@ namespace gui
 		};
 		
 	}//end namespace xpicture
-
+       /// Rectangle area for displaying a bitmap file
 	class picture
 		: public widget_object<category::widget_tag, xpicture::picture_drawer>
 	{
@@ -65,7 +65,15 @@ namespace gui
 		picture(window, const rectangle& = rectangle(), bool visible = true);
 
 		void load(const nana::paint::image&);
-		void bgstyle(bool stretchable, nana::arrange arg, int beg, int end);
+
+        /// Sets the background image style.
+		void bgstyle(bool stretchable,    ///< if false the other arguments will be ignored
+                      nana::arrange arg,  ///< stretching the image horizontally or vertically
+                      int beg,            ///< specify the stretchy area of image.
+                      int end             ///< specify the stretchy area of image.
+                      );
+
+        /// Fills a gradual change color in background.
 		void set_shadow_background(unsigned begin_color, unsigned end_color, bool horizontal);
 		void transparent(bool);
 		bool transparent() const;

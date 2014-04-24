@@ -89,32 +89,32 @@ namespace nana{ namespace gui{
 			};
 		}//end namespace slider
 	}//end namespace drawerbase
-
+    /// A slider widget wich the user can drag for tracking
 	class slider
 		: public widget_object<category::widget_tag, drawerbase::slider::trigger>
 	{
 	public:
-		typedef drawerbase::slider::renderer renderer;
-		typedef drawerbase::slider::provider provider;
-		typedef drawerbase::slider::seekdir seekdir;
+		typedef drawerbase::slider::renderer renderer;       ///< The interface for user-defined renderer.
+		typedef drawerbase::slider::provider provider;       ///< The interface for user-defined provider.
+		typedef drawerbase::slider::seekdir seekdir;         ///< Defines the slider seek direction.
 		typedef drawerbase::slider::extra_events ext_event_type;
 
 		slider();
 		slider(window, bool visible);
 		slider(window, const rectangle& = rectangle(), bool visible = true);
 		ext_event_type& ext_event() const;
-		void seek(seekdir);
+		void seek(seekdir);                                  ///< Define the direction that user can seek by using mouse.
 		void vertical(bool);
 		bool vertical() const;
 		void vmax(unsigned);
 		unsigned vmax() const;
 		void value(unsigned);
 		unsigned value() const;
-		unsigned move_step(bool forward);
+		unsigned move_step(bool forward);                         ///< Increase or decrease the value of slider.
 		unsigned adorn() const;
 
-		pat::cloneable<renderer>& ext_renderer();
-		void ext_renderer(const pat::cloneable<renderer>&);
+		pat::cloneable<renderer>& ext_renderer();                 ///< Refers to the current renderer that slider is using.
+		void ext_renderer(const pat::cloneable<renderer>&);       ///< Set the current renderer.
 		void ext_provider(const pat::cloneable<provider>&);
 		void transparent(bool);
 		bool transparent() const;

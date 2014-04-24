@@ -19,6 +19,25 @@ namespace nana
 {
 namespace gui
 {
+	/** 
+	\brief Container for system native windows. Provides an approach to 
+	display a control that is not written with Nana.GUI in a Nana.GUI window.
+
+	Notes:
+	  
+	1. nana::gui::native_window_type is a type of system handle of windows.
+	2. all the children windows of a nana::gui::frame is topmost to Nana.GUI windows.
+	3. a simple example. Displaying a Windows Edit Control.
+
+			nana::gui::frame frame(parent, 0, 0 200, 100);
+			HWND frame_handle = reinterpret_cast<HWND>(frame.container());
+			HWND edit = ::CreateWindowExW(WS_EX_CLIENTEDGE, L"EDIT", L"Test",
+																WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, 200, 100,
+																frame_handle, 0, ::GetModuleHandle(0), 0);
+			if(edit)
+				frame.insert(edit);
+ 
+     */
 	class frame: public widget_object<category::frame_tag, int>
 	{
 		typedef widget_object<category::frame_tag, int> base_type;
@@ -26,9 +45,10 @@ namespace gui
 		frame();
 		frame(window, bool visible);
 		frame(window, const rectangle& = rectangle(), bool visible = true);
-		bool insert(native_window_type);
-		native_window_type element(unsigned index);
-		native_window_type container() const;
+		bool insert(native_window_type);					///< Inserts a platform native window.
+		native_window_type element(unsigned index);		    ///< Returns the child window through index.
+
+		native_window_type container() const;	     	    ///< Returns the frame container native window handle.
 	};
 }//end namespace gui
 }//end namespace stedex

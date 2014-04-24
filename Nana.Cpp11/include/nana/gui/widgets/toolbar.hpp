@@ -26,9 +26,9 @@ namespace nana{ namespace gui{
 
 			struct extra_events
 			{
-				nana::fn_group<void(nana::gui::toolbar&, size_t)> selected;
-				nana::fn_group<void(nana::gui::toolbar&, size_t)> enter;
-				nana::fn_group<void(nana::gui::toolbar&, size_t)> leave;
+				nana::fn_group<void(nana::gui::toolbar&, size_t cbtn)> selected; ///< a mouse click on a control button.
+				nana::fn_group<void(nana::gui::toolbar&, size_t cbtn)> enter;    ///< the mouse enters a control button.
+				nana::fn_group<void(nana::gui::toolbar&, size_t cbtn)> leave;    ///< the mouse leaves a control button.
 			};
 
 			class drawer
@@ -72,12 +72,12 @@ namespace nana{ namespace gui{
 		
 		}//end namespace toolbar
 	}//end namespace drawerbase
-
+    /// Control bar that contains buttons for controlling
 	class toolbar
 		: public widget_object<category::widget_tag, drawerbase::toolbar::drawer>
 	{
 	public:
-		typedef std::size_t size_type;
+		typedef std::size_t size_type;      ///< A type to count the number of elements.
 		typedef drawerbase::toolbar::extra_events ext_event_type;
 
 		toolbar();
@@ -85,12 +85,12 @@ namespace nana{ namespace gui{
 		toolbar(window, const rectangle& = rectangle(), bool visible = true);
 
 		ext_event_type& ext_event() const;
-		void append();
-		void append(const nana::string& text, const nana::paint::image& img);
-		void append(const nana::string&);
-		bool enable(size_type) const;
-		void enable(size_type n, bool eb);
-		void scale(unsigned s);
+		void append();                      ///< Adds a separator.
+		void append(const nana::string& text, const nana::paint::image& img);   ///< Adds a control button.
+		void append(const nana::string& text);   ///< Adds a control button.
+		bool enable(size_type index) const;
+		void enable(size_type index, bool enable_state);
+		void scale(unsigned s);   ///< Sets the scale of control button.
 	};
 }//end namespace gui
 }//end namespace nana

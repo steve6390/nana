@@ -13,7 +13,7 @@
 #include <functional>
 #include <mutex>
 #include <windows.h>
-
+#include <nana/gui/wvl.hpp>
 
 class subclass
 {

@@ -3,7 +3,7 @@
 #include <nana/gui/wvl.hpp>
 
 namespace nana{	namespace gui
-{
+{       /// Create an Open or Save dialog box to let user select the name of a file.
 	class filebox
 		: nana::noncopyable
 	{
@@ -15,15 +15,19 @@ namespace nana{	namespace gui
 		/**	@brief	specify a title for the dialog
 		 *	@param	string	a text for title
 		 */
-		nana::string title(nana::string);
+		nana::string title( nana::string new_title); ///< . Set a new title for the dialog and \return the old title
 
 		/**	@brief	specify a suggestion directory
 		 *	@param	string	a path of initial directory
 		 *	@note	the behavior of init_path is different between Win7 and Win2K/XP/Vista, but its behavior under Linux is conformed with Win7.
 		 */
-		filebox& init_path(const nana::string&);
-		filebox& init_file(const nana::string&);
-		filebox& add_filter(const nana::string& description, const nana::string& filetype);
+		filebox& init_path(const nana::string&); ///< Suggested init path used to locate a directory when the filebox starts.
+		filebox& init_file(const nana::string&); ///< Init file, if it contains a path, the init path is replaced by the path of init file.
+        /// \brief Add a filetype filter. 
+        /// To specify multiple filter in a single description, use a semicolon to separate the patterns(for example,"*.TXT;*.DOC;*.BAK").
+		filebox& add_filter(const nana::string& description,  ///< for example. "Text File"
+                            const nana::string& filetype      ///< filter pattern(for example, "*.TXT")
+                            );
 
 		nana::string path() const;
 		nana::string file() const;

@@ -147,14 +147,16 @@ namespace nana{	namespace gui
 		}//end namespace categorize
 	}//end namespace drawerbase
 
+	/// \brief Represent an architecture of categories and what category is chosen. 
+	/// The categorize widget can be used for representing a path of a directory or the order of a hierarchy.
 	template<typename T>
 	class categorize
 		: public widget_object<category::widget_tag, drawerbase::categorize::trigger>
 	{
 	public:
-		typedef T value_type;
+		typedef T value_type;		///< The type of objects stored
 		typedef drawerbase::categorize::extra_events<categorize> ext_event_type;
-		typedef drawerbase::categorize::renderer renderer;
+		typedef drawerbase::categorize::renderer renderer;		///< The interface for user-defined renderer.
 
 		categorize()
 		{}
@@ -186,6 +188,9 @@ namespace nana{	namespace gui
 			return get_drawer_trigger().ref_adapter(const_cast<categorize&>(*this))->ext_event();
 		}
 
+		/// Insert a new category with a specified name and the object of value type. 
+		/// The new category would be inserted as a child in current category, 
+		/// and after inserting, the new category is replaced of the current category as a new current one.
 		categorize& insert(const nana::string& name, const value_type& value)
 		{
 			get_drawer_trigger().insert(name, value);
@@ -193,6 +198,7 @@ namespace nana{	namespace gui
 			return *this;
 		}
 
+		/// Inserts a child category into current category.
 		categorize& childset(const nana::string& name, const value_type& value)
 		{
 			if(get_drawer_trigger().childset(name, value))
@@ -200,6 +206,7 @@ namespace nana{	namespace gui
 			return *this;
 		}
 
+		/// Erases a child category with a specified name from current category.
 		categorize& childset_erase(const nana::string& name)
 		{
 			if(get_drawer_trigger().childset_erase(name))
@@ -213,6 +220,7 @@ namespace nana{	namespace gui
 				API::update_window(*this);
 		}
 
+		/// Sets the splitter string
 		categorize& splitstr(const nana::string& sstr)
 		{
 			get_drawer_trigger().splitstr(sstr);
@@ -224,6 +232,7 @@ namespace nana{	namespace gui
 			return get_drawer_trigger().splitstr();
 		}
 
+		/// Retrieves a reference of the current category's value type object. If current category is empty, it throws a exception of std::runtime_error.
 		value_type& value() const
 		{
 			return get_drawer_trigger().value();

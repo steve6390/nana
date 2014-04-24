@@ -101,6 +101,7 @@ namespace nana{ namespace gui{
 	
 	}//end namespace drawerbase
 
+	/// \see nana::date
 	class date_chooser
 		: public widget_object<category::widget_tag, drawerbase::date_chooser::trigger>
 	{
@@ -113,8 +114,8 @@ namespace nana{ namespace gui{
 
 		bool chose() const;
 		nana::date read() const;
-		void weekstr(unsigned index, const nana::string&);
-		void monthstr(unsigned index, const nana::string&);
+		void weekstr(unsigned index, const nana::string&);///<Set the week strings which will be displayed for day, index is in range of [0, 6]
+		void monthstr(unsigned index, const nana::string&);///<Set the month strings which will be displayed for month. index is in range of [0, 11]
 	};
 }//end namespace gui
 }//end namespace nana

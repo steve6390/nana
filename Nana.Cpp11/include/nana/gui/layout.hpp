@@ -18,8 +18,8 @@
 namespace nana
 {
 namespace gui
-{
-	class gird
+{   ///   \todo doc: copy from [http://stdex.sourceforge.net/help/gui/gird.htm]
+	class gird   /// \deprecated
 		: noncopyable
 	{
 		enum kind_t{kind_window, kind_gird};

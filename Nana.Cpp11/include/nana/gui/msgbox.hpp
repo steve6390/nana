@@ -18,8 +18,7 @@
 
 namespace nana{	namespace gui
 {
-	/// A msgbox class
-	/// A msgbox is a prefabricated modal dialog box that displays a text message to a user.
+	/// Prefabricated modal dialog box (with text, icon and actions buttons) that inform and instruct the user.
 	class msgbox
 	{
 	public:
@@ -76,11 +75,11 @@ namespace nana{	namespace gui
 			return *this;
 		}
 
-		/// Displays the message that buffered in the stream.
+		/// \brief Displays the message that buffered in the stream.
 		/// @return, the button that user clicked.
 		pick_t show() const;
 
-		//A function object method alternative to show()
+		/// A function object method alternative to show()
 		pick_t operator()() const
 		{
 			return show();

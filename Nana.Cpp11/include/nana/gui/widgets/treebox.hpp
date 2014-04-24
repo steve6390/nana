@@ -182,12 +182,12 @@ namespace gui
 			}; //end class trigger
 
 
-			/// A proxy for accessing the node.
+			/// \brief A proxy for accessing the node. The key string is case sensitive.
 			class item_proxy
 				: public std::iterator<std::input_iterator_tag, item_proxy>
 			{
 			public:
-				item_proxy();
+				item_proxy();           ///< The default constructor creates an end iterator.
 
 				//Undocumented constructor.
 				item_proxy(trigger*, trigger::node_type*);
@@ -195,7 +195,7 @@ namespace gui
 				/// Append a child.
 				item_proxy append(const nana::string& key, const nana::string& name);
 
-				/// Append a child with a specified value.
+				/// Append a child with a specified value (user object.).
 				template<typename T>
 				item_proxy append(const nana::string& key, const nana::string& name, const T&t)
 				{
@@ -205,50 +205,50 @@ namespace gui
 					return ip;
 				}
 
-				/// Return true if the proxy does not refer to a node
+				/// Return true if the proxy does not refer to a node, as an end iterator.
 				bool empty() const;
 
-				/// Return the distance between the ROOT node and this node.
-				/// @return, only available when emtpy() is false.
+				/// \brief Return the distance between the ROOT node and this node.
+				/// @return  only available when emtpy() is false.
 				std::size_t level() const;
 
 				/// Return the check state
 				bool checked() const;
 
-				/// Set the check state
+				/// Set the check state, and it returns itself.
 				item_proxy& check(bool);
 
-				/// Return true when the node expended
+				/// Return true when the node is expanded  \todo change to expanded ??
 				bool expended() const;
 
-				/// Expend/Shrink children of the node
+				/// Expend/Shrink children of the node, and returns itself.  \todo change to expand ??
 				item_proxy& expend(bool);
 
 				/// Return true when the node is selected.
 				bool selected() const;
 
-				/// Select the node.
+				/// Select the node, and returns itself..
 				item_proxy& select(bool);
 
 				/// Return the icon.
 				const nana::string& icon() const;
 
-				/// Set the icon.
+				/// Set the icon, and returns itself..
 				item_proxy& icon(const nana::string& id);
 
 				/// Return the text.
 				const nana::string& text() const;
 
-				/// Set a new key.
+				/// Set a new key, and returns itself..
 				item_proxy& key(const nana::string& s);
 
 				/// Return the key.
 				const nana::string& key() const;
 
-				/// Set the text.
+				/// Set the text, and returns itself.
 				item_proxy& text(const nana::string&);
 
-				std::size_t size() const;
+				std::size_t size() const; ///< Returns the number of child nodes.
 
 				/// Return the first child of the node.
 				item_proxy child() const;
@@ -265,9 +265,9 @@ namespace gui
 				/// An end node.
 				item_proxy end() const;
 
-				bool operator==(const nana::string&) const;
-				bool operator==(const char*) const;
-				bool operator==(const wchar_t*) const;
+				bool operator==(const nana::string& s) const; ///< Compare the text of node with s.
+				bool operator==(const char* s ) const;        ///< Compare the text of node with s.
+				bool operator==(const wchar_t* s ) const;     ///< Compare the text of node with s.
 
 				/// Behavior of Iterator
 				item_proxy& operator=(const item_proxy&);
@@ -337,17 +337,18 @@ namespace gui
 		}//end namespace treebox
 	}//end namespace drawerbase
 
-
+    /// Displays a hierarchical list of items, such as the files and directories on a disk.
 	class treebox
 		:public widget_object<category::widget_tag, drawerbase::treebox::trigger>
 	{
 	public:
+        /// A type refers to the item and also used to iterate through the node.
 		typedef drawerbase::treebox::item_proxy	item_proxy;
 
 		typedef drawer_trigger_t::ext_event_type ext_event_type;
 		typedef drawerbase::treebox::node_image_tag node_image_type;
 
-		/// The interface of treebox renderer
+		/// The interface of treebox item renderer
 		typedef drawerbase::treebox::renderer_interface renderer_interface;
 
 		/// The interface of treebox compset_placer
@@ -356,15 +357,15 @@ namespace gui
 		/// The default constructor without creating the widget.
 		treebox();
 
-		/// The construct that creates a widget.
-		/// @param wd, A handle to the parent window of the widget being created.
-		/// @param visible, specifying the visible after creating.
+		/// \brief The construct that creates a widget.
+		/// @param wd  A handle to the parent window of the widget being created.
+		/// @param visible  specifying the visible after creating.
 		treebox(window wd, bool visible);
 
-		/// The construct that creates a widget.
-		/// @param wd, A handle to the parent window of the widget being created.
-		/// @param r, the size and position of the widget in its parent window coordinate.
-		/// @param visible, specifying the visible after creating.
+		/// \brief  The construct that creates a widget.
+		/// @param wd  A handle to the parent window of the widget being created.
+		/// @param r  the size and position of the widget in its parent window coordinate.
+		/// @param visible  specifying the visible after creating.
 		treebox(window, const nana::rectangle& = rectangle(), bool visible = true);
 
 		template<typename ItemRenderer>
@@ -385,12 +386,12 @@ namespace gui
 
 		const nana::pat::cloneable<compset_placer_interface> & placer() const;
 
-		/// Eanble the widget that draws automatically when it is operating.
-		/// @param bool, whether to enable.
+		/// \brief  Eanble the widget to be draws automatically when it is operated.
+		/// @param bool  whether to enable.
 		void auto_draw(bool);
 
-		/// Enable the checkbox for each item of the widget.
-		/// @param bool, wheter to enable.
+		/// \brief  Enable the checkbox for each item of the widget.
+		/// @param bool  wheter to enable.
 		treebox & checkable(bool enable);
 
 		/// Determinte whether the checkbox is enabled.
@@ -404,15 +405,23 @@ namespace gui
 
 		void icon_erase(const nana::string& id);
 
-		item_proxy find(const nana::string& keypath);
+		item_proxy find(const nana::string& keypath);  ///< Find an item though a specified keypath.
 
-		item_proxy insert(const nana::string& path_key, const nana::string& title);
-		item_proxy insert(item_proxy i, const nana::string& key, const nana::string& title);
+        /// Inserts a new node to treebox, but if the keypath exists returns the existing node.
+		item_proxy insert(const nana::string& path_key,   ///< specifies the node hierarchical
+                           const nana::string& title      ///< used for displaying
+                           ); 
+
+        /// Inserts a new node to treebox, but if the keypath exists returns the existing node.
+		item_proxy insert( item_proxy pos,             ///< the parent item node
+                           const nana::string& key,    ///< specifies the new node
+                           const nana::string& title   ///< used for displaying.
+                           );
 		item_proxy erase(item_proxy i);
 
 		void erase(const nana::string& keypath);
 
-		nana::string make_key_path(item_proxy i, const nana::string& splitter) const;
+		nana::string make_key_path(item_proxy i, const nana::string& splitter) const;///<returns the key path
 		item_proxy selected() const;
 	};//end class treebox
 }//end namespace gui

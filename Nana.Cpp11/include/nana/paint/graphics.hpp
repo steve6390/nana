@@ -59,32 +59,39 @@ namespace nana
 			impl_type * impl_;
 		};
 
-		//class graphics
+		/// \brief off-screen resource defined as ref-counting, can refer one resource
+        ///
+        /// Load a bitmap into a graphics:
+        /// \code 
+        /// nana::paint::graphics graph;
+        /// nana::paint::image img("C:\\ABitmap.bmp");
+        /// img.paste(graph, 0, 0); //graph may create if it is empty
+        /// \endcode
 		class graphics
 		{
 		public:
 			typedef nana::gui::native_window_type native_window_type;
 
 			graphics();
-			graphics(unsigned width, unsigned height);
-			graphics(const nana::size&);
-			graphics(const graphics&);
+			graphics(unsigned width, unsigned height);   ///< size in pixel
+			graphics(const nana::size&);                 ///< size in pixel
+			graphics(const graphics&);      ///< the resource is not copyed, the two graphics objects refer to the *SAME* resource
 			graphics& operator=(const graphics&);
-			bool changed() const;
-			bool empty() const;
+			bool changed() const;           ///< Returns true if the graphics object is operated
+			bool empty() const;             ///< Returns true if the graphics object does not refer to any resource.
 			operator const void*() const;
 
 			drawable_type handle() const;
 			const void* pixmap() const;
 			const void* context() const;
-			void make(unsigned width, unsigned height);
+			void make(unsigned width, unsigned height);       ///< Creates a bitmap resource that size is width by height in pixel
 			void resize(unsigned width, unsigned height);
-			void typeface(const font&);
+			void typeface(const font&);                       ///< Selects a specified font type into the graphics object. 
 			font typeface() const;
-			nana::size	text_extent_size(const nana::char_t*) const;
-			nana::size	text_extent_size(const nana::string&) const;
-			nana::size	text_extent_size(const nana::char_t*, std::size_t length) const;
-			nana::size	text_extent_size(const nana::string&, std::size_t length) const;
+			nana::size	text_extent_size(const nana::char_t*) const;    ///< Computes the width and height of the specified string of text.
+			nana::size	text_extent_size(const nana::string&) const;    ///< Computes the width and height of the specified string of text.
+			nana::size	text_extent_size(const nana::char_t*, std::size_t length) const;    ///< Computes the width and height of the specified string of text with the specified length.
+			nana::size	text_extent_size(const nana::string&, std::size_t length) const;    ///< Computes the width and height of the specified string of text with the specified length.
 			nana::size	glyph_extent_size(const nana::char_t*, std::size_t length, std::size_t begin, std::size_t end) const;
 			nana::size	glyph_extent_size(const nana::string&, std::size_t length, std::size_t begin, std::size_t end) const;
 			bool glyph_pixels(const nana::char_t *, std::size_t length, unsigned* pxbuf) const;
@@ -105,32 +112,32 @@ namespace nana
 			void rectangle_line(const nana::rectangle&, color_t left, color_t top, color_t right, color_t bottom);
 			void round_rectangle(int x, int y, unsigned width, unsigned height, unsigned radius_x, unsigned radius_y, color_t, bool solid, color_t color_if_solid);
 			void round_rectangle(const nana::rectangle&, unsigned radius_x, unsigned radius_y, color_t, bool solid, color_t color_if_solid);
-			void shadow_rectangle(const nana::rectangle&, color_t beg_color, color_t end_color, bool vertical);
-			void shadow_rectangle(int x, int y, unsigned width, unsigned height, color_t beg_color, color_t end_color, bool vertical);
+			void shadow_rectangle(const nana::rectangle&,                        color_t beg_color, color_t end_color, bool vertical);
+			void shadow_rectangle(int x, int y, unsigned width, unsigned height, color_t beg_color, color_t end_color, bool vertical); ///< Draws a width and height rectangle at (x, y) and the color in range of [begin, end]
 
-			void line(int x1, int y1, int x2, int y2, color_t);
+			void line(int x1, int y1, int x2, int y2, color_t);     ///<  Draws a line from point (x1, y1) to point (x2, y2) in the specified color. 
 			void line(const point& beg, const point& end, color_t);
 			void lines(const point* points, std::size_t n_of_points, color_t);
 			void line_begin(int x, int y);
 			void line_to(int x, int y, color_t);
 			
-			void bitblt(int x, int y, const graphics& source);
-			void bitblt(const nana::rectangle& r_dst, native_window_type src);
-			void bitblt(const nana::rectangle& r_dst, native_window_type src, const nana::point& p_src);
-			void bitblt(const nana::rectangle& r_dst, const graphics& src);
-			void bitblt(const nana::rectangle& r_dst, const graphics& src, const nana::point& p_src);
+			void bitblt(int x, int y, const graphics& source);     ///<   Transfers the source to the specified point.
+			void bitblt(const nana::rectangle& r_dst, native_window_type src);  ///< Transfers the color data corresponding to r_dst from the src window to this graphics.  
+			void bitblt(const nana::rectangle& r_dst, native_window_type src, const nana::point& p_src);  ///< Transfers the color data corresponding to r_dst from the src window at point p_src to this graphics.  
+			void bitblt(const nana::rectangle& r_dst, const graphics& src);     ///< Transfers the color data corresponding to r_dst from the src graphics to this graphics.
+			void bitblt(const nana::rectangle& r_dst, const graphics& src, const nana::point& p_src);///< Transfers the color data corresponding to r_dst from the src graphics at point p_src to this graphics.  
 
-			void blend(const nana::rectangle& s_r, graphics& dst, const nana::point& d_pos, double fade_rate) const;
-			void blend(const nana::rectangle& r, nana::color_t, double fade_rate);
+			void blend(const nana::rectangle& s_r, graphics& dst, const nana::point& d_pos, double fade_rate) const;///< blends with the dst object.
+			void blend(const nana::rectangle& r, nana::color_t, double fade_rate);      ///< blends the specifed block width the specified color.
 
-			void blur(const nana::rectangle& r, std::size_t radius);
+			void blur(const nana::rectangle& r, std::size_t radius);      ///< Blur process.
 
-			void paste(const graphics& dst, int x, int y) const;
-			void paste(native_window_type dst, const nana::rectangle&, int sx, int sy) const;
+			void paste(const graphics& dst, int x, int y) const;    ///< Paste the graphics object into the dest at (x, y)
+			void paste(native_window_type dst, const nana::rectangle&, int sx, int sy) const;  ///< Paste the graphics object into a platform-dependent window at (x, y)
 			void paste(native_window_type dst, int dx, int dy, unsigned width, unsigned height, int sx, int sy) const;
 			void paste(drawable_type dst, int x, int y) const;
 			void paste(const nana::rectangle& r_src, graphics& dst, int x, int y) const;
-			void rgb_to_wb();
+			void rgb_to_wb();   ///< Transform a color graphics into black&white.
 
 			void stretch(const nana::rectangle& src_r, graphics& dst, const nana::rectangle& r) const;
 			void stretch(graphics& dst, const nana::rectangle& r) const;
@@ -138,9 +145,9 @@ namespace nana
 			void flush();
 
 			unsigned width() const;
-			unsigned height() const;
+			unsigned height() const;      ///< Returns the height of the off-screen buffer.
 			nana::size size() const;
-			void setsta();
+			void setsta();      ///<  	Clears the status if the graphics object had been changed
 			void release();
 			void save_as_file(const char*);
 

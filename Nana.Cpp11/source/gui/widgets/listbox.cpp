@@ -2538,10 +2538,8 @@ namespace nana{ namespace gui{
 					case keyboard::os_arrow_down:
 						essence_->lister.move_select(up);
 						essence_->trace_selected_item();
-						draw();
-						API::lazy_refresh();
 						break;
-					case L' ':
+					case STR(' ') :
 						{
 							selection s;
 							bool ck = ! essence_->lister.item_selected_all_checked(s);
@@ -2552,6 +2550,8 @@ namespace nana{ namespace gui{
 					default:
 						return;
 					}
+					draw();
+					API::lazy_refresh();
 				}
 			//end class trigger
 

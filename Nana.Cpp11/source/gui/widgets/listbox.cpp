@@ -1351,7 +1351,7 @@ namespace nana{ namespace gui{
 				{
 					static const unsigned scale = 16;
 					int offset_x;
-					index_pair offset_y;	//x stands for category, y stands for item. "y == npos" means that is a category.
+					index_pair offset_y;	//cat stands for category, item stands for item. "item == npos" means that is a category.
 
 					nana::gui::scroll<true> v;
 					nana::gui::scroll<false> h;
@@ -2021,7 +2021,7 @@ namespace nana{ namespace gui{
 						if(n-- == 0) break;
 						idx.item = 0;
 
-						state = ((npos == tracker.item) && (idx.cat == tracker.cat) ? essence_t::state_t::highlighted : essence_t::state_t::normal);
+						state = (tracker.is_category() && (idx.cat == tracker.cat) ? essence_t::state_t::highlighted : essence_t::state_t::normal);
 
 						_m_draw_categ(*i_categ, rect.x - essence_->scroll.offset_x, y, txtoff, header_w, rect, bgcolor, state);
 						y += essence_->item_size;
@@ -2501,7 +2501,7 @@ namespace nana{ namespace gui{
 					//Get the item which the mouse is placed.
 					if (lister.forward(offset_y, essence_->pointer_where.second, item_pos))
 					{
-						if (item_pos.item != npos)	//being the npos of item.second is a category
+						if (!item_pos.is_category())	//being the npos of item.second is a category
 							return;
 
 						bool do_expand = (lister.expand(item_pos.cat) == false);
@@ -2576,7 +2576,7 @@ namespace nana{ namespace gui{
 
 				bool item_proxy::empty() const
 				{
-					return (nullptr == ess_);
+					return ! ess_ ;
 				}
 
 				item_proxy & item_proxy::check(bool ck)

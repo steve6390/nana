@@ -17,6 +17,7 @@
 #include <nana/system/platform.hpp>
 #include <sstream>
 #include <nana/system/timepiece.hpp>
+#include <nana/gui/wvl.hpp>
 #include <nana/gui/detail/inner_fwd_implement.hpp>
 #include <nana/gui/detail/native_window_interface.hpp>
 #include <nana/gui/layout_utility.hpp>
@@ -385,7 +386,7 @@ namespace detail
 					::WaitMessage();
 					while(::PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 					{
-						if(msg.message == WM_QUIT)	break;
+						if(msg.message == WM_QUIT)   break;
 
 						if((msg.message == WM_CHAR || msg.message == WM_KEYDOWN || msg.message == WM_KEYUP) || !::IsDialogMessage(ntv_modal, &msg))
 						{
@@ -422,6 +423,15 @@ namespace detail
 				while(::PeekMessage(&msg, 0, 0, 0, PM_REMOVE));
 			}
 		}
+        catch(std::exception& e)
+        {
+             (msgbox(modal_window, STR("std::exception have been trow during message pumping: ")) /*.icon(msgbox::icon_information)*/
+                                 <<STR("\n   in windows: ") << API::window_caption(modal_window)
+                                 <<STR("\n   exception : ") << e.what() 
+             ).show();
+
+        }
+
 		catch(...)
 		{
 			internal_scope_guard isg;

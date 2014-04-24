@@ -16,6 +16,7 @@
 #include <deque>
 #include <memory>
 #include <fstream>
+#include <functional> 
 #include <nana/charset.hpp>
 
 #include "textbase_extra_evtbase.hpp"
@@ -127,6 +128,8 @@ namespace skeletons
 			text_cont_.clear();		//Clear only if the file can be opened.
 			attr_max_.reset();
 
+                        _m_saved(tfs);       
+
 			std::string str;
 			std::size_t lines = 0;
 			while(ifs.good())
@@ -178,10 +181,11 @@ namespace skeletons
 
 			if(ifs.good())
 			{
-				text_cont_.clear();		//Clear only if the file can be opened.
+				std::getline(ifs, str);
+				text_cont_.clear();		//Clear only if the file can be opened.        _m_saved(tfs);  ???????
 				attr_max_.reset();
 
-				std::getline(ifs, str);
+                _m_saved(tfs);                 //          _m_saved(tfs);  ???????
 
 				std::size_t len_of_BOM = 0;
 				switch(encoding)
@@ -236,7 +240,7 @@ namespace skeletons
 			}
 		}
 
-		void store(const char* tfs) const
+		void store(const char* tfs) 
 		{
 			std::ofstream ofs(tfs, std::ios::binary);
 			if(ofs && text_cont_.size())
@@ -430,6 +434,10 @@ namespace skeletons
 			}
 		}
 
+        void set_unchanged()             ///////   ?????????
+        {
+            changed_ =false;
+        }
 		const std::string& filename() const
 		{
 			return filename_;

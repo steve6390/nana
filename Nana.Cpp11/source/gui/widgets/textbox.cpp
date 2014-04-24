@@ -261,20 +261,24 @@ namespace nana{ namespace gui{ namespace drawerbase {
 				editor->load(static_cast<std::string>(nana::charset(file)).c_str());
 		}
 
-		void textbox::store(const nana::char_t* file) const
+//-		void textbox::store(const nana::char_t* file) const
+		void textbox::store(const nana::char_t* file)  
 		{
 			internal_scope_guard isg;
 			auto editor = get_drawer_trigger().editor();
 			if(editor)
-				editor->textbase().store(static_cast<std::string>(nana::charset(file)).c_str());
+				editor->store(static_cast<std::string>(nana::charset(file)).c_str());
+//-				editor->textbase().store(static_cast<std::string>(nana::charset(file)).c_str());
 		}
 
-		void textbox::store(const nana::char_t* file, nana::unicode encoding) const
+//-		void textbox::store(const nana::char_t* file, nana::unicode encoding) const
+		void textbox::store(const nana::char_t* file, nana::unicode encoding) 
 		{
 			internal_scope_guard isg;
 			auto editor = get_drawer_trigger().editor();
 			if(editor)
-				editor->textbase().store(static_cast<std::string>(nana::charset(file)).c_str(), encoding);
+//-				editor->textbase().store(static_cast<std::string>(nana::charset(file)).c_str(), encoding);
+				editor->store(static_cast<std::string>(nana::charset(file)).c_str(), encoding);
 		}
 
 		std::string textbox::filename() const
@@ -301,10 +305,10 @@ namespace nana{ namespace gui{ namespace drawerbase {
 			return (editor ? editor->textbase().saved() : false);
 		}
 
-		bool textbox::getline(std::size_t n, nana::string& text) const
+		bool textbox::getline(std::size_t line_index, nana::string& text) const
 		{
 			auto editor = get_drawer_trigger().editor();
-			return (editor ? editor->getline(n, text) : false);
+			return (editor ? editor->getline(line_index, text) : false);
 		}
 
 		textbox& textbox::append(const nana::string& text, bool at_caret)
@@ -319,6 +323,19 @@ namespace nana{ namespace gui{ namespace drawerbase {
 				API::update_window(this->handle());
 			}
 			return *this;
+		}
+
+        textbox& textbox::reset(const nana::string& newtext )
+		{
+			auto editor = get_drawer_trigger().editor();
+			if(editor)
+			{
+				editor->text(newtext);
+                //editor->set_unchanged(); 
+				API::update_window(this->handle());
+			}
+			return *this;
+
 		}
 
 		textbox& textbox::border(bool has_border)

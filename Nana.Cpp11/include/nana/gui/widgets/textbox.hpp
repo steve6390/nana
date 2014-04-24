@@ -102,6 +102,7 @@ namespace nana{ namespace gui{
 		void load(const nana::char_t* file);
 		void store(const nana::char_t* file)  ;  ///< Writes the text to a file with multibytes encoding.
 		void store(const nana::char_t* file, nana::unicode encoding) ;///< Writes the text to a file with unicode encoding in little-endian.
+		textbox& reset (const nana::string& newtext = STR("") );      ///< discard the old text and set a newtext
 
 		/// The file of last store operation.
 		std::string filename() const;
@@ -148,11 +149,10 @@ namespace nana{ namespace gui{
 		textbox& from(int);
 		textbox& from(double);
 	protected:
-		//Override _m_caption for caption()
-		nana::string _m_caption() const;
-		void _m_caption(const nana::string&);
-		//Override _m_typeface for changing the caret
-		void _m_typeface(const nana::paint::font&);
+		 
+		nana::string _m_caption() const override;
+		void _m_caption(const nana::string&) override;
+		void _m_typeface(const nana::paint::font&) override;
 	};
 
 }//end namespace gui

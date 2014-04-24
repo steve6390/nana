@@ -297,13 +297,13 @@ namespace gui
 				template<typename T>
 				T * value_ptr() const
 				{
-					return _m_value().get<T>();
+					return _m_value().template get<T>();
 				}
 
 				template<typename T>
 				T& value() const
 				{
-					T* p = _m_value().get<T>();
+					T* p = _m_value().template get<T>();
 					if(0 == p)
 						throw std::runtime_error("treebox::value<T>() Invalid type of value.");
 					return *p;

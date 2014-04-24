@@ -435,13 +435,17 @@ namespace nana{ namespace gui{ namespace drawerbase {
 			nana::string s = _m_caption();
 			if (s.empty()) return 0;
 
-#ifdef NANA_UNICODE
+#ifdef NANA_MINGW
+			std::stringstream ss;
+			ss << static_cast<std::string>(nana::charset(s));
+#elif defined(NANA_UNICODE)
 			std::wstringstream ss;
+			ss << s;
 #else
 			std::stringstream ss;
+			ss << s;
 #endif
 			int value;
-			ss << s;
 			ss >> value;
 			return value;
 		}
@@ -451,38 +455,54 @@ namespace nana{ namespace gui{ namespace drawerbase {
 			nana::string s = _m_caption();
 			if (s.empty()) return 0;
 
-#ifdef NANA_UNICODE
+#ifdef NANA_MINGW
+			std::stringstream ss;
+			ss << static_cast<std::string>(nana::charset(s));
+#elif defined(NANA_UNICODE)
 			std::wstringstream ss;
+			ss << s;
 #else
 			std::stringstream ss;
+			ss << s;
 #endif
 			double value;
-			ss << s;
 			ss >> value;
 			return value;
 		}
 
 		textbox& textbox::from(int n)
 		{
-#ifdef NANA_UNICODE
-			std::wstringstream ss;
-#else
+#ifdef NANA_MINGW
 			std::stringstream ss;
-#endif
+			ss<<n;
+			_m_caption(nana::charset(ss.str()));
+#else
+	#ifdef NANA_UNICODE
+			std::wstringstream ss;
+	#else
+			std::stringstream ss;
+	#endif
 			ss << n;
 			_m_caption(ss.str());
+#endif
 			return *this;
 		}
 
 		textbox& textbox::from(double d)
 		{
-#ifdef NANA_UNICODE
-			std::wstringstream ss;
-#else
+#ifdef NANA_MINGW
 			std::stringstream ss;
-#endif
+			ss << d;
+			_m_caption(nana::charset(ss.str()));
+#else
+	#ifdef NANA_UNICODE
+			std::wstringstream ss;
+	#else
+			std::stringstream ss;
+	#endif
 			ss << d;
 			_m_caption(ss.str());
+#endif
 			return *this;
 		}
 

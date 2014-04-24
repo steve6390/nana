@@ -121,7 +121,7 @@ namespace nana{ namespace gui{
 						return 0;
 
 					nana::shared_ptr<nana::any> & any_ptr = items_[pos]->any_ptr;
-					if(allocate_if_empty && (0 == any_ptr))
+					if(allocate_if_empty && (any_ptr.get() == 0))
 						any_ptr.reset(new nana::any);
 					return any_ptr.get();
 				}
@@ -225,7 +225,7 @@ namespace nana{ namespace gui{
 
 				void open_lister()
 				{
-					if(0 == state_.lister)
+					if((0 == state_.lister) && !items_.empty())
 					{
 						module_.items.clear();
 						std::copy(items_.begin(), items_.end(), std::back_inserter(module_.items));
@@ -442,6 +442,8 @@ namespace nana{ namespace gui{
 
 				void _m_draw_push_button(bool enabled)
 				{
+					using namespace nana::paint;
+
 					if(0 == graph_) return;
 
 					int left = graph_->width() - 17;
@@ -450,16 +452,30 @@ namespace nana{ namespace gui{
 					int bottom = graph_->height() - 2;
 					int mid = top + (bottom - top) * 5 / 18;
 
-					double percent = 1;
-					if(has_lister() || (state_.state == StatePress && state_.pointer_where == WherePushButton))
-						percent = 0.8;
-					else if(state_.state == this->StateMouseOver)
-						percent = 0.9;
+					nana::color_t topcol, topcol_ln, botcol, botcol_ln;
+					nana::color_t arrow_color;
+					if(enabled && items_.size())
+					{
+						arrow_color = 0xFFFFFF;
+						double percent = 1;
+						if(has_lister() || (state_.state == StatePress && state_.pointer_where == WherePushButton))
+							percent = 0.8;
+						else if(state_.state == this->StateMouseOver)
+							percent = 0.9;
 
-					nana::color_t topcol_ln = nana::paint::graphics::mix(0x3F476C, 0xFFFFFF, percent),
-						botcol_ln = nana::paint::graphics::mix(0x031141, 0xFFFFFF, percent),
-						topcol = nana::paint::graphics::mix(0x3F83B4, 0xFFFFFF, percent),
-						botcol = nana::paint::graphics::mix(0x0C4A95, 0xFFFFFF, percent);
+						topcol_ln = graphics::mix(0x3F476C, 0xFFFFFF, percent);
+						botcol_ln = graphics::mix(0x031141, 0xFFFFFF, percent);
+						topcol = graphics::mix(0x3F83B4, 0xFFFFFF, percent);
+						botcol = graphics::mix(0x0C4A95, 0xFFFFFF, percent);
+					}
+					else
+					{
+						arrow_color	= 0x707070;
+						topcol_ln	= 0x7F7F7F;
+						botcol_ln	= 0x505050;
+						topcol	= 0xC3C3C3;
+						botcol	= 0xA0A0A0;
+					}
 
 					graph_->line(left, top, left, mid, topcol_ln);
 					graph_->line(right - 1, top, right - 1, mid, topcol_ln);
@@ -470,7 +486,7 @@ namespace nana{ namespace gui{
 					graph_->rectangle(left + 1, top, right - left - 2, mid - top + 1, topcol, true);
 					graph_->rectangle(left + 1, mid + 1, right - left - 2, bottom - mid, botcol, true);
 
-					nana::paint::gadget::arrow_16_pixels(*graph_, left, top + ((bottom - top) / 2) - 7, (enabled ? 0xFFFFFF : nana::gui::color::dark_border), 1, nana::paint::gadget::directions::to_south);
+					gadget::arrow_16_pixels(*graph_, left, top + ((bottom - top) / 2) - 7, arrow_color, 1, gadget::directions::to_south);
 
 				}
 

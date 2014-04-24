@@ -295,7 +295,7 @@ namespace detail
 		bool _m_wait_for_queue(unsigned tid)
 		{
 			using namespace nana::threads;
-			thread_binder * thr;
+			thread_binder * thr = 0;
 			{
 				lock_guard<recursive_mutex> lock(table_.mutex);
 				std::map<unsigned, thread_binder*>::iterator i = table_.thr_table.find(tid);

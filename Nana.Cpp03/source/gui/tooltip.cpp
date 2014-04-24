@@ -66,7 +66,7 @@ namespace nana{ namespace gui{
 				}
 			private:
 				//tooltip_interface implementation
-				bool tooltip_empty() const override
+				bool tooltip_empty() const //override
 				{
 					return this->empty();
 				}
@@ -107,7 +107,7 @@ namespace nana{ namespace gui{
 					}
 				}
 
-				virtual void duration(std::size_t d) override
+				virtual void duration(std::size_t d)	//override
 				{
 					duration_ = d;
 					timer_.umake_events();

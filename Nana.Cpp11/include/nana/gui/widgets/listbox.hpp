@@ -291,7 +291,7 @@ namespace nana{ namespace gui{
 				template<typename T>
 				item_proxy append(const T& t)
 				{
-					auto proxy = _m_resolver().template get<resolver_proxy<T> >();
+					auto proxy = _m_resolver().get<resolver_proxy<T> >();
 					if(proxy)
 					{
 						auto & res = proxy->res;

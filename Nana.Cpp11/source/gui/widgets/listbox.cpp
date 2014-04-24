@@ -356,7 +356,7 @@ namespace nana{ namespace gui{
 				{
 					category_t cg;
 					cg.expand = true;
-					list_.push_back(cg);
+					list_.push_back(cg);   // we allwais have cat # 0
 				}
 
 				void bind(essence_t* ess, widget& wd)
@@ -954,14 +954,12 @@ namespace nana{ namespace gui{
 						{
 							if(size_item(i))
 							{
-								//The first item which contains at least one item.
-								next_selected.cat = i;
-								next_selected.item = 0;
+								next_selected = {i, 0};  // the first item of the first non-empty cat
 								good = true;
 								break;
 							}
 						}
-						if(good == false) return;
+						if(good == false) return;   // items in listbox : nothing to select (and an empty but visible cat?)
 					}
 
 					//start moving
@@ -1196,10 +1194,10 @@ namespace nana{ namespace gui{
 					if(list_.size() <= from.cat) return false;
 
 					//this is a category, so...
-					if(npos == from.item)
+					if(from.is_category())
 					{
 						//because the first is a category, and offs must not be 0, the category would not be candidated.
-						//the algorithm above to calc the offset item is always starting with a item.
+						//the algorithm above to calc the offset item is always starting with an item.
 						--offs;
 						from.item = 0;
 					}
@@ -1337,7 +1335,7 @@ namespace nana{ namespace gui{
 				unsigned suspension_width;
 
 				es_header header;
-				es_lister lister;
+				es_lister lister;  // we have at least one emty cat. the #0
 				nana::any resolver;
 
 				state_t ptr_state;
@@ -1351,7 +1349,7 @@ namespace nana{ namespace gui{
 				{
 					static const unsigned scale = 16;
 					int offset_x;
-					index_pair offset_y;	//x stands for category, y stands for item. "y == npos" means that is a category.
+					index_pair offset_y;	//cat stands for category, item stands for item. "item == npos" means that is a category.
 
 					nana::gui::scroll<true> v;
 					nana::gui::scroll<false> h;
@@ -2021,7 +2019,7 @@ namespace nana{ namespace gui{
 						if(n-- == 0) break;
 						idx.item = 0;
 
-						state = ((npos == tracker.item) && (idx.cat == tracker.cat) ? essence_t::state_t::highlighted : essence_t::state_t::normal);
+						state = (tracker.is_category() && (idx.cat == tracker.cat) ? essence_t::state_t::highlighted : essence_t::state_t::normal);
 
 						_m_draw_categ(*i_categ, rect.x - essence_->scroll.offset_x, y, txtoff, header_w, rect, bgcolor, state);
 						y += essence_->item_size;
@@ -2501,7 +2499,7 @@ namespace nana{ namespace gui{
 					//Get the item which the mouse is placed.
 					if (lister.forward(offset_y, essence_->pointer_where.second, item_pos))
 					{
-						if (item_pos.item != npos)	//being the npos of item.second is a category
+						if (!item_pos.is_category())	//being the npos of item.second is a category
 							return;
 
 						bool do_expand = (lister.expand(item_pos.cat) == false);
@@ -2538,10 +2536,8 @@ namespace nana{ namespace gui{
 					case keyboard::os_arrow_down:
 						essence_->lister.move_select(up);
 						essence_->trace_selected_item();
-						draw();
-						API::lazy_refresh();
 						break;
-					case L' ':
+					case STR(' ') :
 						{
 							selection s;
 							bool ck = ! essence_->lister.item_selected_all_checked(s);
@@ -2552,6 +2548,8 @@ namespace nana{ namespace gui{
 					default:
 						return;
 					}
+					draw();
+					API::lazy_refresh();
 				}
 			//end class trigger
 
@@ -2576,7 +2574,7 @@ namespace nana{ namespace gui{
 
 				bool item_proxy::empty() const
 				{
-					return (nullptr == ess_);
+					return ! ess_ ;
 				}
 
 				item_proxy & item_proxy::check(bool ck)

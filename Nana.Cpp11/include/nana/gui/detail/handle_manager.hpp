@@ -141,10 +141,12 @@ namespace gui
 		template<typename HandleType>
 		struct handle_manager_deleter_impl<false, HandleType>
 		{
+			template<typename T> struct error{};
+			
 			void operator()(const HandleType) const
 			{
 				//This Error is that you should define a deleter type for the non-pointer handle type
-				int YouHaveToDefineADeleterForHandleManager3thTemplateParameterForANonPointerHandleType = (int*)0;
+				error<HandleType> YouHaveToDefineADeleterForHandleManager3thTemplateParameterForANonPointerHandleType = (int*)0;
 			}
 		};
 

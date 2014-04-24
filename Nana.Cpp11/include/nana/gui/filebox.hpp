@@ -29,6 +29,14 @@ namespace nana{	namespace gui
                             const nana::string& filetype      ///< filter pattern(for example, "*.TXT")
                             );
 
+        filebox& add_filter(const std::vector<std::pair<nana::string, nana::string>> &ftres)
+        {
+            for (auto &f : ftres)
+                add_filter(f.first, f.second);
+            return *this;
+        };
+
+
 		nana::string path() const;
 		nana::string file() const;
 

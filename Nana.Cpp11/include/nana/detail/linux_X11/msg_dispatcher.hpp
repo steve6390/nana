@@ -298,7 +298,7 @@ namespace detail
 		//return@ it returns true if the queue is not empty, otherwise the wait is timeout.
 		bool _m_wait_for_queue(unsigned tid)
 		{
-			thread_binder * thr;
+			thread_binder * thr = nullptr;
 			{
 				std::lock_guard<decltype(table_.mutex)> lock(table_.mutex);
 				auto i = table_.thr_table.find(tid);

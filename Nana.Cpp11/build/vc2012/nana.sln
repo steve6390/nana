@@ -1,18 +1,57 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nana", "nana.vcxproj", "{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Win32 = Debug|Win32
-		Release|Win32 = Release|Win32
+		MDdebug|Mixed Platforms = MDdebug|Mixed Platforms
+		MDdebug|Win32 = MDdebug|Win32
+		MDdebug|x64 = MDdebug|x64
+		MDrelease|Mixed Platforms = MDrelease|Mixed Platforms
+		MDrelease|Win32 = MDrelease|Win32
+		MDrelease|x64 = MDrelease|x64
+		MT_rel_XP|Mixed Platforms = MT_rel_XP|Mixed Platforms
+		MT_rel_XP|Win32 = MT_rel_XP|Win32
+		MT_rel_XP|x64 = MT_rel_XP|x64
+		MTdebug|Mixed Platforms = MTdebug|Mixed Platforms
+		MTdebug|Win32 = MTdebug|Win32
+		MTdebug|x64 = MTdebug|x64
+		MTrelease|Mixed Platforms = MTrelease|Mixed Platforms
+		MTrelease|Win32 = MTrelease|Win32
+		MTrelease|x64 = MTrelease|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.Debug|Win32.ActiveCfg = Debug|Win32
-		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.Debug|Win32.Build.0 = Debug|Win32
-		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.Release|Win32.ActiveCfg = Release|Win32
-		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.Release|Win32.Build.0 = Release|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MDdebug|Mixed Platforms.ActiveCfg = MDdebug|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MDdebug|Mixed Platforms.Build.0 = MDdebug|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MDdebug|Win32.ActiveCfg = MDdebug|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MDdebug|Win32.Build.0 = MDdebug|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MDdebug|x64.ActiveCfg = MDdebug|x64
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MDdebug|x64.Build.0 = MDdebug|x64
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MDrelease|Mixed Platforms.ActiveCfg = MDrelease|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MDrelease|Mixed Platforms.Build.0 = MDrelease|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MDrelease|Win32.ActiveCfg = MDrelease|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MDrelease|Win32.Build.0 = MDrelease|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MDrelease|x64.ActiveCfg = MDrelease|x64
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MDrelease|x64.Build.0 = MDrelease|x64
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MT_rel_XP|Mixed Platforms.ActiveCfg = MT_rel_XP|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MT_rel_XP|Mixed Platforms.Build.0 = MT_rel_XP|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MT_rel_XP|Win32.ActiveCfg = MT_rel_XP|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MT_rel_XP|Win32.Build.0 = MT_rel_XP|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MT_rel_XP|x64.ActiveCfg = MT_rel_XP|x64
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MT_rel_XP|x64.Build.0 = MT_rel_XP|x64
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MTdebug|Mixed Platforms.ActiveCfg = MTdebug|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MTdebug|Mixed Platforms.Build.0 = MTdebug|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MTdebug|Win32.ActiveCfg = MTdebug|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MTdebug|Win32.Build.0 = MTdebug|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MTdebug|x64.ActiveCfg = MTdebug|x64
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MTdebug|x64.Build.0 = MTdebug|x64
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MTrelease|Mixed Platforms.ActiveCfg = MTrelease|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MTrelease|Mixed Platforms.Build.0 = MTrelease|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MTrelease|Win32.ActiveCfg = MTrelease|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MTrelease|Win32.Build.0 = MTrelease|Win32
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MTrelease|x64.ActiveCfg = MTrelease|x64
+		{97BC04AD-5259-47DC-9160-BFFBA0EDC40E}.MTrelease|x64.Build.0 = MTrelease|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

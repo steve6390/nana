@@ -25,6 +25,7 @@ split the area of image into parts for each enabled state.
 
 \example example.button.cpp
 ![](btn_over.jpg)
+\todo provide button_image.bmp
 
 
 */

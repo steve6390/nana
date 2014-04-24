@@ -321,9 +321,7 @@ namespace nana{ namespace gui{
 		}//end namespace scroll
 	}//end namespace drawerbase
 
-	/// A scroll widget
-	/// The template class scroll provides a way that a window can display the data object
-	/// which is larger than the window's client area.
+	/// Provides a way to display an object which is larger than the window's client area.
 	template<bool Vertical>
 	class scroll
 		: public widget_object<category::widget_tag, drawerbase::scroll::trigger<Vertical> >
@@ -333,21 +331,21 @@ namespace nana{ namespace gui{
 		typedef drawerbase::scroll::extra_events ext_event_type;
 		typedef std::size_t size_type;
 
-		/// The default constructor without creating the widget.
+		///  \brief The default constructor without creating the widget.
 		scroll(){}
 
-		/// The construct that creates a widget.
-		/// @param wd, A handle to the parent window of the widget being created.
-		/// @param visible, specifying the visible after creating.
+		/// \brief The construct that creates a widget.
+		/// @param wd  A handle to the parent window of the widget being created.
+		/// @param visible  specifying the visible after creating.
 		scroll(window wd, bool visible)
 		{
 			this->create(wd, rectangle(), visible);
 		}
 
-		/// The construct that creates a widget.
-		/// @param wd, A handle to the parent window of the widget being created.
-		/// @param r, the size and position of the widget in its parent window coordinate.
-		/// @param visible, specifying the visible after creating.
+		///  \brief The construct that creates a widget.
+		/// @param wd  A handle to the parent window of the widget being created.
+		/// @param r  the size and position of the widget in its parent window coordinate.
+		/// @param visible  specifying the visible after creating.
 		scroll(window wd, const rectangle& r, bool visible = true)
 		{
 			this->create(wd, r, visible);
@@ -358,8 +356,8 @@ namespace nana{ namespace gui{
 			return this->get_drawer_trigger().ext_event;
 		}
 
-		/// Determines whether it is scrollable.
-		/// @param for_less, whether it can be scrolled for a less value.
+		///  \brief Determines whether it is scrollable.
+		/// @param for_less  whether it can be scrolled for a less value.
 		bool scrollable(bool for_less) const
 		{
 			auto & m = this->get_drawer_trigger().metrics();
@@ -388,37 +386,37 @@ namespace nana{ namespace gui{
 			return this->get_drawer_trigger().range(r);
 		}
 
-		/// Get the value.
+		///  \brief Get the value.
 		/// @return the value.
 		size_type value() const
 		{
 			return this->get_drawer_trigger().metrics().value;
 		}
 
-		/// Set the value.
-		/// @param s, a new value.
+		///  \brief Set the value.
+		/// @param s  a new value.
 		void value(size_type s)
 		{
 			return this->get_drawer_trigger().value(s);
 		}
 
 
-		/// Get the step of the sroll widget. The step indicates a variation of the value.
+		///  \brief Get the step of the sroll widget. The step indicates a variation of the value.
 		/// @return the step.
 		size_type step() const
 		{
 			return this->get_drawer_trigger().metrics().step;
 		}
 
-		/// Set the step.
-		/// @param s, a value for step.
+		///  \brief Set the step.
+		/// @param s  a value for step.
 		void step(size_type s)
 		{
 			return this->get_drawer_trigger().step(s);
 		}
 
-		/// Increase/decrease values by a step.
-		/// @param forward, it determines whether increase or decrease.
+		///  \brief Increase/decrease values by a step.
+		/// @param forward  it determines whether increase or decrease.
 		/// @return true if the value is changed.
 		bool make_step(bool forward)
 		{
@@ -430,8 +428,8 @@ namespace nana{ namespace gui{
 			return false;
 		}
 
-		/// Increase/decrease values by steps as if it is scrolled through mouse wheel.
-		/// @param forward, it determines whether increase or decrease.
+		///  \brief Increase/decrease values by steps as if it is scrolled through mouse wheel.
+		/// @param forward  it determines whether increase or decrease.
 		/// @return true if the vlaue is changed.
 		bool make_scroll(bool forward)
 		{

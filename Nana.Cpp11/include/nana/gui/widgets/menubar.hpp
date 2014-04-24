@@ -85,16 +85,19 @@ namespace gui
 		}//end namespace menubar
 	}//end namespace drawerbase
 
+	  /// \brief A toolbar at the top of window for popuping menus.
+	  ///
+	  /// The widget sets as shortkey the character behind the first of & in the text, for the item. e.g. "File(&F)" or "&File".
 	class menubar
 		:	public widget_object<category::widget_tag, drawerbase::menubar::trigger>
 	{
 	public:
-		menubar();
-		menubar(window);
-		void create(window);
-		menu& push_back(const nana::string&);
-		menu& at(size_t) const;
-		std::size_t length() const;
+		menubar();								///< The default constructor delay creation.
+		menubar(window);						///< Create a menubar at the top of the specified window.
+		void create(window);					///< Create a menubar at the top of the specified window.
+		menu& push_back(const nana::string&);	///< Appends a new (empty) menu.
+		menu& at(size_t index) const;		    ///< Gets the menu specified by index.
+		std::size_t length() const;		        ///< Number of menus.
 	};//end class menubar
 }//end namespace gui
 }//end namespace nana

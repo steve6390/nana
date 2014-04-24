@@ -64,7 +64,7 @@ namespace nana{ namespace gui{
 			};
 		}//end namespace textbox
 	}//end namespace drawerbase
-
+    /// Allow users to enter and edit text by typing on the keyboard.
 	class textbox
 		:public widget_object<category::widget_tag, drawerbase::textbox::drawer>
 	{
@@ -73,34 +73,35 @@ namespace nana{ namespace gui{
 		/// The default constructor without creating the widget.
 		textbox();
 
-		/// The construct that creates a widget.
-		/// @param wd, A handle to the parent window of the widget being created.
-		/// @param visible, specifying the visible after creating.
+		/// \brief The construct that creates a widget.
+		/// @param wd  A handle to the parent window of the widget being created.
+		/// @param visible  specifying the visible after creating.
 		textbox(window, bool visible);
 
-		/// The construct that creates a widget with a specified text.
-		/// @param window, A handle to the parent window of the widget being created.
-		/// @param text, the text that will be displayed.
-		/// @param visible, specifying the visible after creating.
+		/// \brief The construct that creates a widget with a specified text.
+		/// @param window  A handle to the parent window of the widget being created.
+		/// @param text  the text that will be displayed.
+		/// @param visible  specifying the visible after creating.
 		textbox(window, const nana::string& text, bool visible = true);
 
-		/// The construct that creates a widget with a specified text.
-		/// @param window, A handle to the parent window of the widget being created.
-		/// @param text, the text that will be displayed.
-		/// @param visible, specifying the visible after creating.
+		/// \brief The construct that creates a widget with a specified text.
+		/// @param window  A handle to the parent window of the widget being created.
+		/// @param text  the text that will be displayed.
+		/// @param visible  specifying the visible after creating.
 		textbox(window, const nana::char_t* text, bool visible = true);
 
-		/// The construct that creates a widget.
-		/// @param window, A handle to the parent window of the widget being created.
-		/// @param rectangle, the size and position of the widget in its parent window coordinate.
-		/// @param visible, specifying the visible after creating.
+		/// \brief The construct that creates a widget.
+		/// @param window  A handle to the parent window of the widget being created.
+		/// @param rectangle  the size and position of the widget in its parent window coordinate.
+		/// @param visible  specifying the visible after creating.
 		textbox(window, const rectangle& = rectangle(), bool visible = true);
 
 		ext_event_type & ext_event() const;
 
+        ///  \brief Loads a text file. When attempt to load a unicode encoded text file, be sure the file have a BOM header.
 		void load(const nana::char_t* file);
-		void store(const nana::char_t* file) const;
-		void store(const nana::char_t* file, nana::unicode encoding) const;
+		void store(const nana::char_t* file)  ;  ///< Writes the text to a file with multibytes encoding.
+		void store(const nana::char_t* file, nana::unicode encoding) ;///< Writes the text to a file with unicode encoding in little-endian.
 
 		/// The file of last store operation.
 		std::string filename() const;
@@ -111,8 +112,13 @@ namespace nana{ namespace gui{
 		/// Determine whether the changed text has been saved into the file.
 		bool saved() const;
 
-		bool getline(std::size_t n, nana::string&) const;
-		textbox& append(const nana::string&, bool at_caret);
+        /// Read the text in a specified line. It returns true for success.
+		bool getline(std::size_t line_index, nana::string&) const;
+
+        /// Appends an string. If `at_caret` is `true`, the string is inserted at the position of caret, otherwise, it is appended at end of the textbox.
+		textbox& append(const nana::string& text, bool at_caret); 
+
+        /// Shows/Hides the border.
 		textbox& border(bool);
 
 		/// Determine whether the text is multi-line enabled.
@@ -123,12 +129,18 @@ namespace nana{ namespace gui{
 		void set_accept(std::function<bool(nana::char_t)>);
 
 		textbox& tip_string(const nana::string&);
+
+        /// Set a mask character. Text is displayed as mask character if a mask character is set. This is used for hiding some special text, such as password.
 		textbox& mask(nana::char_t);
+
+        /// Returns true if some text is selected.
 		bool selected() const;
+
+        /// Selects/unselects all text.
 		void select(bool);
 
-		void copy() const;
-		void paste();
+		void copy() const;  ///< Copies the selected text into shared memory, such as clipboard under Windows.
+		void paste();       ///< Pastes the text from shared memory.
 		void del();
 
 		int to_int() const;

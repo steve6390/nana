@@ -4,7 +4,7 @@
 #include <nana/deploy.hpp>
 
 namespace nana{	namespace audio
-{
+{       /// play an audio file in Windows WAV format
 	class player
 		: private nana::noncopyable
 	{

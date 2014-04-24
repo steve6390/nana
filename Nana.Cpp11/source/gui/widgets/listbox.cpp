@@ -26,14 +26,14 @@ namespace nana{ namespace gui{
 	{
 		namespace listbox
 		{
-			class es_header
+			class es_header   /// Essence of the columns Header
 			{
 			public:
 				typedef std::size_t size_type;
 
 				struct column_t
 				{
-					nana::string text;
+					nana::string text;  //< "text" header of the column number "index" with weigth "pixels"
 					unsigned pixels;
 					bool visible;
 					size_type index;
@@ -480,7 +480,7 @@ namespace nana{ namespace gui{
 					return sorted_reverse_;
 				}
 
-				//Append a new category with a specified name.
+				///Append a new category with a specified name.
 				category_t* create_cat(const nana::string& text)
 				{
 					category_t cg;
@@ -509,7 +509,7 @@ namespace nana{ namespace gui{
 					return &list_.back();
 				}
 
-
+				/// Insert before item in "pos" a new item with "text" in column 0
 				bool insert(const index_pair& pos, const nana::string& text)
 				{
 					auto & catobj = *_m_at(pos.cat);
@@ -531,6 +531,7 @@ namespace nana{ namespace gui{
 					return true;
 				}
 
+				/// Insert  before item in "pos" a new item with "text" in column 0
 				bool insert(const index_pair& pos, nana::string&& text)
 				{
 					auto & catobj = *_m_at(pos.cat);
@@ -1310,7 +1311,7 @@ namespace nana{ namespace gui{
 			private:
 				essence_t * ess_;
 				nana::gui::listbox * widget_;
-				std::size_t sorted_index_;		//It stands for the index of header which is used for sorting.
+				std::size_t sorted_index_;		///< The index of the column used to sort
 				bool	resort_;
 				bool	sorted_reverse_;
 				bool	ordered_categories_;	//A switch indicates whether the categories are ordered.

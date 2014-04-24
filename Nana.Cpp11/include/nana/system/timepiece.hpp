@@ -16,7 +16,7 @@
 namespace nana
 {
 namespace system
-{
+{           ///  used for measuring and signaling the end of time intervals.
 	class timepiece
 	{
 	public:
@@ -24,8 +24,8 @@ namespace system
 		timepiece(const volatile timepiece&);
 		~timepiece();
 		timepiece & operator=(const volatile timepiece &);
-		void start() volatile;
-		double calc() const volatile;
+		void start() volatile;              ///<  	Set the begin time.
+		double calc() const volatile;       ///<    Get the intervals from the begin time.
 	private:
 		struct impl_t;
 		impl_t * impl_;

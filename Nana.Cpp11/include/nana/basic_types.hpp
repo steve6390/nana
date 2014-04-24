@@ -175,9 +175,9 @@ namespace nana
 
 	struct rectangle
 	{
-		rectangle();
+		rectangle();									 ///< a zero-size rectangle at (0, 0).
 		rectangle(int x, int y, unsigned width, unsigned height);
-		rectangle(const size &);
+		rectangle(const size &);						 ///< a rectangle with specified size at coordinate (0, 0).
 		rectangle(const point&, const size& = size());
 
 		bool operator==(const rectangle& rhs) const;
@@ -186,7 +186,8 @@ namespace nana
 		rectangle & operator=(const point&);
 		rectangle & operator=(const size&);
 
-		rectangle& pare_off(int pixels);
+		rectangle& pare_off(int pixels);	 ///<Pares the specified pixels off the rectangle. It's equal to x += pixels; y + pixels; width -= (pixels << 1); height -= (pixels << 1);
+
 
 		bool is_hit(int x, int y) const;
 

@@ -146,21 +146,22 @@ namespace nana{ namespace gui{
 			};
 		}
 	}//end namespace drawerbase
-
+    /// Analogous to dividers in a notebook or the labels in a file cabinet
 	template<typename Type>
 	class tabbar
 		: public widget_object<category::widget_tag, drawerbase::tabbar::trigger>
 	{
 	public:
-		typedef Type value_type;
-		typedef drawerbase::tabbar::item_renderer item_renderer;
+		typedef Type value_type;            ///< The type of element data which is stored in the tabbar.
+		typedef drawerbase::tabbar::item_renderer item_renderer; ///< A user-defined item renderer should be derived from this interface.
 		typedef drawerbase::tabbar::extra_events<tabbar> ext_event_type;
 
-		struct button_add{};
-		struct button_scroll{};
-		struct button_list{};
-		struct button_close{};
+		struct button_add{};    ///< The type identifies the add button of the tabbar's toolbox.
+		struct button_scroll{}; ///< The type identifies the scroll button of the tabbar's toolbox.
+		struct button_list{};   ///< The type identifies the list button of the tabbar's toolbox.
+		struct button_close{};  ///< The type identifies the close button of the tabbar's toolbox.
 
+        /// A template class identifies the buttons of the tabbar’s toolbox. Refer to notes for more details.
 		template<typename ButtonAdd = nana::null_type, typename ButtonScroll = nana::null_type, typename ButtonList = nana::null_type, typename ButtonClose = nana::null_type>
 		struct button_container
 		{
@@ -211,7 +212,7 @@ namespace nana{ namespace gui{
 			return static_cast<value_type&>(value);
 		}
 
-		void active(std::size_t i)
+		void active(std::size_t i)                  /// Actives a tab specified by i.
 		{
 			get_drawer_trigger().active(i);
 		}
@@ -221,13 +222,13 @@ namespace nana{ namespace gui{
 			return get_drawer_trigger().active();
 		}
 
-		value_type & at(std::size_t i) const
+		value_type & at(std::size_t i) const        /// Returns i'th element
 		{
 			nana::any & value = get_drawer_trigger().at(i);
 			return static_cast<value_type&>(value);
 		}
 
-		void close_fly(bool fly)
+		void close_fly(bool fly)                    /// Draw or not a close button in each tab.
 		{
 			if(get_drawer_trigger().close_fly(fly))
 				API::refresh_window(this->handle());
@@ -248,19 +249,19 @@ namespace nana{ namespace gui{
 			return event_adapter_->ext_event;
 		}
 
-		std::size_t length() const
+		std::size_t length() const                 /// Returns the number of items.
 		{
 			return get_drawer_trigger().length();
 		}
 
-		void push_back(const nana::string& text)
+		void push_back(const nana::string& text)  /// Append a new item.
 		{
 			drawer_trigger_t & t = get_drawer_trigger();
 			t.push_back(text, value_type());
 			API::update_window(*this);
 		}
 
-		void relate(std::size_t pos, window wd)
+		void relate(std::size_t pos, window wd)  /// Binds a window to an item specified by pos, if the item is selected, shows the window, otherwise, hides it.
 		{
 			get_drawer_trigger().relate(pos, wd);
 		}
@@ -279,7 +280,7 @@ namespace nana{ namespace gui{
 		{
 			get_drawer_trigger().tab_image(i, img);
 		}
-
+        /// Sets buttons of the tabbar's toolbox, refer to notes for more details.
 		template<typename Add, typename Scroll, typename List, typename Close>
 		void toolbox(const button_container<Add, Scroll, List, Close>&, bool enable)
 		{
@@ -303,12 +304,12 @@ namespace nana{ namespace gui{
 				API::refresh_window(this->handle());
 		}
 
-		void text(std::size_t pos, const nana::string& str)
+		void text(std::size_t pos, const nana::string& str) /// Sets the title of the specified item, If pos is invalid, the method throws an std::out_of_range object.
 		{
 			get_drawer_trigger().text(pos, str);
 		}
 
-		nana::string text(std::size_t pos) const
+		nana::string text(std::size_t pos) const /// Returns a title of a specified item, If pos is invalid, the method trhows a std::out_of_range object.
 		{
 			return get_drawer_trigger().text(pos);
 		}

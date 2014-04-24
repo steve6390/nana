@@ -19,8 +19,9 @@
 
 
 namespace nana{
+   /// Some mutex classes for synchronizing.
 namespace threads
-{
+{    /// A thread pool manages a group threads for a large number of tasks processing.
 	class pool
 	{
 		struct task
@@ -54,9 +55,9 @@ namespace threads
 		struct task_signal;
 		class impl;
 	public:
-		pool();
-		pool(std::size_t thread_number);
-		~pool();
+		pool();                             ///< Creates a group of threads.
+		pool(std::size_t thread_number);    ///< Creates a number of threads specifed by thread_number.
+		~pool();    ///< waits for the all running tasks till they are finished and skips all the queued tasks.
 
 		template<typename Function>
 		void push(const Function& f)
@@ -74,8 +75,8 @@ namespace threads
 			}
 		}
 
-		void signal();
-		void wait_for_signal();
+		void signal(); ///< Make a signal that will be triggered when the tasks which are pushed before it are finished.
+		void wait_for_signal();     ///< Waits for a signal until the signal processed.
 		void wait_for_finished();
 	private:
 		void _m_push(task* task_ptr);
@@ -83,11 +84,12 @@ namespace threads
 		impl * impl_;
 	};//end class pool
 
-
+            /// Manages a group threads for a large number of tasks processing.
 	template<typename Function>
 	class pool_pusher
 	{
 	public:
+           /// same as Function if Function is not a function prototype, otherwise value_type is a pointer type of function
 		typedef typename nana::metacomp::static_if<std::is_function<Function>::value, Function*, Function>::value_type value_type;
 
 		pool_pusher(pool& pobj, value_type fn)

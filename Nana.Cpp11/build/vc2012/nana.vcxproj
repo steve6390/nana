@@ -115,6 +115,7 @@
     <ClCompile Include="..\..\source\gui\drawing.cpp" />
     <ClCompile Include="..\..\source\gui\effects.cpp" />
     <ClCompile Include="..\..\source\gui\element.cpp" />
+    <ClCompile Include="..\..\source\gui\filebox.cpp" />
     <ClCompile Include="..\..\source\gui\functional.cpp" />
     <ClCompile Include="..\..\source\gui\layout.cpp" />
     <ClCompile Include="..\..\source\gui\layout_utility.cpp" />

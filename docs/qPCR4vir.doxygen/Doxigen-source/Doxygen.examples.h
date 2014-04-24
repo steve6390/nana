@@ -158,4 +158,74 @@ function or a functor with a  `const nana::gui::eventinfo&` parameter or not.
 */
 /**\example example_menu.cpp
 */
+/**\example window-dragger.cpp
+This example sets `btn` and `adherent` to be triggers, and dragger will move the form and adherent when 
+the user is dragging the trigger widgets.
+*/
+/**\example draw.cpp
+
+Draw a 10 X 10 red rectangle at the point(5, 5).
+
+*/
+/**\example background-effects.cpp
+
+![](effect_mode.png)
+![](effects_bground_show.png)
+
+\todo docs: add txt from [http://stdex.sourceforge.net/help/gui/background_effects.htm]
+*/
+/**\example animate-bmp.cpp
+*/
+/**\example filebox-txt.cpp
+*/
+/**\example stretch_image.cpp
+# Nana provides the image processors:
++ Stretch algorithms:
+    - __bilinear interoplation__ 	    It produces a reasonably realistic image.
+    - __proximal interoplation__ 	    It(also known as nearest-neighbor interoplation) is fast, but produces a not realistic image.
+
++ Alpha Blend algorith:
+    - __alpha_blend__    	            Blends two images with alpha channel that is given by source image.
+
++ Blend algorithm:
+    - __blend__  	                    Blends two images.
+
++ Blur algorithm:
+    - __blur__ 	                    Blurs an image.
+
++ Line algorithm:
+    - bresenham_line 	                Draws a line.
+
+Examples
+
+This is an example which creates a form to display an image, and when the size of form is changed, it makes the image fit the form.
+In addtion, the example also shows the way to switch the stretch image processing algorithm.
+
+Result of application:
+![bilinear interoplation - Stretch the image through bilinear interoplation](fit_window_bilinear_interoplation.png)
+
+![proximal interoplation - Stretch the image through proximal interoplation](fit_window_proximal_interoplation.png)
+
+*/
+/**\example audio_player_simple.cpp
+*/
+/**\example audio_player.cpp
+ Play an audio file asynchronously. Play the audio when a button is clicked, and it does not block the UI thread.
+
+*/
+/**\example thread-pool.cpp
+
+The signal()/wait_for_signal() provide a method to wait for tasks to finish.
+
+*/
+/**\example drag-button.cpp
+See [How to make widget movable by mouse the best way](https://nanapro.codeplex.com/discussions/444058)
+
+and [How to get nana::paint::image from nana::paint::graphics](https://nanapro.codeplex.com/discussions/444621)
+
+and [Is it possible to make event inside event handler?](https://nanapro.codeplex.com/discussions/444121)
+
+and [nana::gui::drawing and nana::gui::API::update_window ](https://nanapro.codeplex.com/discussions/445024)
+
+*/
 	

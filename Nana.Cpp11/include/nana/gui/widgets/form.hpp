@@ -32,13 +32,17 @@ namespace nana{namespace gui{
 		}//end namespace form
 	}//end namespace drawerbase
 
+	/// \brief Pop-up window. Is different from other window widgets: its default  constructor create the window.
+	/// \see nana::gui::appearance
 	class form: public widget_object<category::root_tag, drawerbase::form::trigger>
 	{
 	public:
 		typedef nana::gui::appear appear;
 
+		/// Creates a window at the point and size specified by rect, and with the specified appearance. Creates a form owned by the desktop.
 		form(const rectangle& = API::make_center(300, 200), const appearance& = appearance());
 		form(window, const appearance& = appearance());
+        /// Creates a window at the point and size specified by rect, with the specified appearance. This window is always floating above its owner.
 		form(window, const rectangle&, const appearance& = appearance());
 	};
 

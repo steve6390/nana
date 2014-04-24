@@ -50,7 +50,8 @@ namespace drawerbase
 	}//end namespace checkbox
 }//end namespace drawerbase
 
-	class checkbox
+	
+    class checkbox
 		: public widget_object<category::widget_tag, drawerbase::checkbox::drawer>
 	{
 	public:
@@ -61,14 +62,19 @@ namespace drawerbase
 		checkbox(window, const rectangle& = rectangle(), bool visible = true);
 
 		void element_set(const char* name);
-		void react(bool want);
+		void react(bool want);		///< Enables the reverse check while clicking on the checkbox.
 		bool checked() const;
 		void check(bool chk);
+
+		/// \brief With the radio mode, users make a choice among a set of mutually exclusive, 
+		/// related options. Users can choose one and only one option. 
+		/// There is a helper class manages checkboxs for radio mode, 
+		/// \see radio_group.
 		void radio(bool);
 		void transparent(bool value);
 		bool transparent() const;
 	};//end class checkbox
-
+    /// for managing checkboxs in radio mode
 	class radio_group
 	{
 		struct element_tag
@@ -80,7 +86,7 @@ namespace drawerbase
 	public:
 		~radio_group();
 		void add(checkbox&);
-		std::size_t checked() const;
+		std::size_t checked() const;       ///< Retrieves the index of the checkbox which is checked.
 		std::size_t size() const;
 	private:
 		void _m_checked(const eventinfo&);

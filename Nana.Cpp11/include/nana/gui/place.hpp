@@ -18,6 +18,7 @@ namespace nana
 {
 namespace gui
 {
+    ///  Layout managment - an object of class place is attached to a widget, and it automatically positions and resizes the children widgets.
 	class place
 		: nana::noncopyable
 	{
@@ -39,10 +40,11 @@ namespace gui
 			virtual field_t& fasten(window wd)	= 0;
 		};
 	public:
+        ///  reference to a field manipulator which refers to a field object created by place 
 		typedef field_t & field_reference;
 
 		place();
-		place(window);
+		place(window);///< Attaches to a specified widget.
 		~place();
 
 		/** @brief Bind to a window
@@ -50,13 +52,14 @@ namespace gui
 		 *	@remark	It will throw an exception if the place has already binded to a window.
 		 */
 		void bind(window handle);
-		void div(const char* s);
-		field_reference field(const char* name);
-		void collocate();
+        
+		void div(const char* s);              ///< Divides the attached widget into fields.
+		field_reference field(const char* name);///< Returns a field with the specified name.
+		void collocate();                     ///< Layouts the widgets.
 
-		static fixed_t fixed(window wd, unsigned size);
-		static percent_t percent(window wd, int per);
-		static room_t room(window wd, unsigned w, unsigned h);
+		static fixed_t fixed(window wd, unsigned size);  ///< Generates a fixed object to send it to the field.
+		static percent_t percent(window wd, int per);    ///< Generates a percent object to send it to the field.
+		static room_t room(window wd, unsigned w, unsigned h); ///< Generates a room object to send it to the field.
 	private:
 		implement * impl_;
 	};

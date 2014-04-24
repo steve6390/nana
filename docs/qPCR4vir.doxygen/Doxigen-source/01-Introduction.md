@@ -357,6 +357,13 @@ What is `STR`? `STR` is a macro that transforms a multi-byte string into wide-by
 if `NANA_UNICODE` is defined in *config.hpp*. With `STR` you can easier switch your program 
 between multi-byte and wide-byte. 
 
+\todo Better explain what STR() is. No run-time cost: just preprocesing, 100%. Clean and simple.
+
+See [Use of std::string with char16_t or char32_t instead nana::string in c++11 version ](https://sourceforge.net/p/nanapro/discussion/general/thread/fc165711/)
+
+See ...
+
+
 	btn.make_event<nana::gui::events::click>(nana::gui::API::exit);
 
 What is nana::gui::API::exit? This is an API provided by Nana.GUI. Its prototype is

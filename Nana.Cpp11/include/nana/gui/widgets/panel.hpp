@@ -33,7 +33,7 @@ namespace nana{	namespace gui
 			};
 		}// end namespace panel
 	}//end namespace drawerbase
-
+    /// For placing other widgets, where the bool template parameter determinte if it is  widget or lite_widget, wich in actual use make no difference.
 	template<bool HasBackground>
 	class panel
 		: public widget_object<typename metacomp::static_if<HasBackground,

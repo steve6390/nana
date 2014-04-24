@@ -20,7 +20,8 @@
 
 namespace nana{ namespace gui
 {
-	class combox;
+	/// A list box combined with a textbox - the list box should drop down when the user selects the arrow next to the control
+    class combox;
 	namespace drawerbase
 	{
 		namespace combox
@@ -170,8 +171,8 @@ namespace nana{ namespace gui
 		void set_accept(std::function<bool(nana::char_t)>);
 		combox& push_back(const nana::string&);
 		std::size_t the_number_of_options() const;
-		std::size_t option() const;
-		void option(std::size_t);
+		std::size_t option() const;   ///< Index of the last selected, from drop-down list, item.
+		void option(std::size_t);   ///< Select the text specified by index
 		nana::string text(std::size_t) const;
 		void erase(std::size_t pos);
 
@@ -204,11 +205,15 @@ namespace nana{ namespace gui
 		}
 
 		ext_event_type& ext_event() const;
+
+		/// \brief Set user-defined item renderer object. 
+		/// It is an address therefore the user should not destroy the renderer object 
+		/// after it is set to the combox. Passing null_ptr cancels the user-defined renderer object.
 		void renderer(item_renderer*);
 
 		void image(std::size_t, const nana::paint::image&);
 		nana::paint::image image(std::size_t) const;
-		void image_pixels(unsigned);
+		void image_pixels(unsigned);  ///<Sets the width of image area. Default is 16 pixels.
 	private:
 		//Override _m_caption for caption()
 		nana::string _m_caption() const;

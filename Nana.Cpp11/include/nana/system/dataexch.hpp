@@ -15,7 +15,7 @@
 #include <nana/basic_types.hpp>
 
 namespace nana{ namespace system{
-
+            /// a data exchange mechanism through Windows Clipboard, X11 Selection.
 	class dataexch
 	{
 	public:

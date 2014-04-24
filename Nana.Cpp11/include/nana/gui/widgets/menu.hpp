@@ -39,7 +39,7 @@ namespace nana{ namespace gui{
 					std::size_t index_;
 					menu_item_type &item_;
 				};
-
+				    /// A callback functor type.  
 				typedef std::function<void(item_proxy&)> event_fn_t;
 
 				//Default constructor initializes the item as a splitter
@@ -116,46 +116,50 @@ namespace nana{ namespace gui{
 		typedef drawerbase::menu::renderer_interface renderer_interface;
 		typedef drawerbase::menu::menu_item_type item_type;
 		typedef item_type::item_proxy item_proxy;
-		typedef item_type::event_fn_t event_fn_t;
+		typedef item_type::event_fn_t event_fn_t;	///< A callback functor type. Prototype: `void(item_proxy&)`
 
-		menu();
+		menu();										///< The default constructor. NO OTHER CONSTRUCTOR.
 		~menu();
-		void append(const nana::string& text, const event_fn_t& = event_fn_t());
+
+			/// Appends an item to the menu.
+		void append(const nana::string& text, const event_fn_t& callback= event_fn_t());
 		void append_splitter();
-		void clear();
+		void clear();								///< Erases all of the items.
+		/// Closes the menu. It does not destroy the menu; just close the window for the menu.
 		void close();
-		void image(std::size_t n, const paint::image&);
-		void check_style(std::size_t n, check_t style);
-		void checked(std::size_t n, bool);
-		bool checked(std::size_t n) const;
-		void enabled(std::size_t n, bool);
-		bool enabled(std::size_t n) const;
-		void erase(std::size_t n);
-		bool link(std::size_t n, menu& menu_obj);
-		menu * link(std::size_t n);
-		menu *create_sub_menu(std::size_t n);
-		void popup(window, int x, int y);
-		void answerer(std::size_t n, const event_fn_t&);
-		void destroy_answer(const std::function<void()>&);
-		void gaps(const nana::point&);
-		void goto_next(bool forward);
-		bool goto_submen();
-		bool exit_submenu();
-		std::size_t size() const;
+		void image(std::size_t index, const paint::image& icon);
+		void check_style(std::size_t index, check_t style);
+		void checked(std::size_t index, bool);
+		bool checked(std::size_t index) const;
+		void enabled(std::size_t index, bool);///< Enables or disables the mouse or keyboard input for the item.
+		bool enabled(std::size_t index) const;
+		void erase(std::size_t index);			 	 ///< Removes the item
+		bool link(std::size_t index, menu& menu_obj);///< Link a menu to the item as a sub menu.
+		menu * link(std::size_t index);		 	     ///< Retrieves a linked sub menu of the item.
+		menu *create_sub_menu(std::size_t index);
+		void popup(window owner, int x, int y);     ///< Popup the menu at the owner window. 
+		void answerer(std::size_t index, const event_fn_t&);  ///< Modify answerer of the specified item.
+		void destroy_answer(const std::function<void()>&);  ///< Sets an answerer for the callback while the menu window is closing.
+		void gaps(const nana::point&);				///< Sets the gap between a menu and its sub menus.(\See Note4)
+		void goto_next(bool forward);				///< Moves the focus to the next or previous item.
+		bool goto_submen();///< Popup the submenu of the current item if it has a sub menu. Returns true if succeeds.
+		bool exit_submenu();						///< Closes the current window of the sub menu.
+		std::size_t size() const;					///< Return the number of items.
 		int send_shortkey(nana::char_t key);
 
-		menu& max_pixels(unsigned);
+		menu& max_pixels(unsigned);				    ///< Sets the max width in pixels of the item.
 		unsigned max_pixels() const;
 
-		menu& item_pixels(unsigned);
+		menu& item_pixels(unsigned);				///< Sets the height in pixel for the items.
 		unsigned item_pixels() const;
 
 		template<typename Renderer>
-		void renderer(const Renderer& rd)
+		void renderer(const Renderer& rd)			///< Sets a user-defined renderer. (See Note 5)
+
 		{
 			renderer(rd);
 		}
-		void renderer(const pat::cloneable<renderer_interface>&);
+		void renderer(const pat::cloneable<renderer_interface>&);	///< Sets a user-defined renderer. 
 		const pat::cloneable<renderer_interface>& renderer() const;
 
 	private:

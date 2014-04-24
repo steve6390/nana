@@ -15,17 +15,18 @@
 
 namespace nana
 {
+	/// A date operation class. \see nana::gui::date_chooser
 	class date
 	{
 	public:
 		struct value
 		{
-			unsigned year;	//1601 - 30827
-			unsigned month;	//1-12
-			unsigned day;	//1-31
+			unsigned year;	///< 1601 - 30827
+			unsigned month;	///< 1-12
+			unsigned day;	///< 1-31
 		};
 
-		date();
+		date();					///< the initialized date is today.
 		date(const std::tm&);
 		date(int year, int month, int day);
 
@@ -42,9 +43,9 @@ namespace nana
 		const value & read() const;
 
 		static int day_of_week(int year, int month, int day);
-		static unsigned year_days(unsigned year);
-		static unsigned month_days(unsigned year, unsigned month);
-		static unsigned day_in_year(unsigned y, unsigned m, unsigned d);
+		static unsigned year_days(unsigned year);	///< the number of days in the specified year.
+		static unsigned month_days(unsigned year, unsigned month);	///< the number of days in the specified month.
+		static unsigned day_in_year(unsigned y, unsigned m, unsigned d);	///< Returns the index of the specified day in this year, at range[1, 365] or [1, 366]
 	private:
 		date _m_add(unsigned x) const;
 		date _m_sub(unsigned x) const;
@@ -57,9 +58,9 @@ namespace nana
 	public:
 		struct value
 		{
-			unsigned hour;		//[0-23]
-			unsigned minute;	//[0-59]
-			unsigned second;	//[0-61], the range of [60, 61] is used for leap seconds
+			unsigned hour;		///<[0-23]
+			unsigned minute;	///<[0-59]
+			unsigned second;	///<[0-61], the range of [60, 61] is used for leap seconds
 		};
 
 		time();

@@ -21,24 +21,25 @@
 namespace nana{	namespace gui
 {
 	class animation;
-
+        /// Holds the frames and frame builders. Have reference semantics for efficiency.
 	class frameset
 	{
 		friend class animation;
 	public:
+        /// function which builds frames.
 		typedef std::function<bool(std::size_t pos, paint::graphics&, nana::size&)> framebuilder;
 
 		struct impl;
 	public:
 		frameset();
-		void push_back(const paint::image&);
+		void push_back(const paint::image&);        ///< Inserts frames at the end.
 		void push_back(paint::image&&);
-		void push_back(framebuilder& fb, std::size_t length);
-		void push_back(framebuilder&& fb, std::size_t length);
+		void push_back(framebuilder& fb, std::size_t length);  ///< Insters a framebuilder and the number of frames that it generates.
+		void push_back(framebuilder&& fb, std::size_t length); ///< Insters a framebuilder and the number of frames that it generates.
 	private:
 		std::shared_ptr<impl> impl_;
 	};
-
+            /// Easy way to display an animation or create an animated GUI 
 	class animation
 	{
 		struct branch_t
@@ -67,7 +68,7 @@ namespace nana{	namespace gui
 		}
 		*/
 
-		void looped(bool enable);
+		void looped(bool enable);       ///< Enables or disables the animation repeating playback.
 
 		void play();
 

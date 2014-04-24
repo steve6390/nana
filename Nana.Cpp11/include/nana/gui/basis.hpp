@@ -65,7 +65,8 @@ namespace gui
 	}// end namespace category
 
 	typedef detail::native_window_handle_impl * native_window_type;
-	typedef detail::window_handle_impl*	window;
+
+	typedef detail::window_handle_impl*	window; ///< \see [What is window class ](https://sourceforge.net/p/nanapro/discussion/general/thread/bd0fabfb/) 
 	typedef detail::event_handle_impl*	event_handle;
 
 
@@ -105,10 +106,10 @@ namespace gui
 
 	enum class cursor
 	{
-		hand	= 60,
-		arrow	= 68,
-		wait	= 150,
-		iterm	= 152, //A text caret
+		hand	= 60,     ///< displays a hand to indicate a text or an element is clickable
+		arrow	= 68,     ///< the default shape
+		wait	= 150,    ///< indicates the system is currently busy
+		iterm	= 152,    ///< A text caret. Displays a caret to indicate the UI is input able
 		size_we	= 108,
 		size_ns	= 116,
 		size_top_left = 134,
@@ -119,15 +120,22 @@ namespace gui
 
 	enum class mouse
 	{
-		any_button, left_button, middle_button, right_button
+		any_button, 
+		left_button, 
+		middle_button, 
+		right_button
 	};
 
 	enum class z_order_action
 	{
-		none, bottom, top, topmost, foreground
+		none, 
+		bottom,       ///< brings a window at the bottom of z-order.
+		top,          ///< brings a widget at the top of the z-order.
+		topmost,      ///< brings a window at the top of the z-order and stays here.
+		foreground    ///< brings a window to the foreground.
 	};
 
-	//Window appearance structure
+	/// Window appearance structure defined to specify the appearance of a form
 	struct appearance
 	{
 		bool taskbar;
@@ -141,9 +149,9 @@ namespace gui
 		bool decoration;
 
 		appearance();
-		appearance(bool has_decaration, bool taskbar, bool floating, bool no_activate, bool min, bool max, bool sizable);
+		appearance(bool has_decoration, bool taskbar, bool floating, bool no_activate, bool min, bool max, bool sizable);
 	};
-
+    /// Provided to generate an appearance object with better readability and understandability   
 	struct appear
 	{
 		struct minimize{};
@@ -152,8 +160,8 @@ namespace gui
 		struct taskbar{};
 		struct floating{};
 		struct no_activate{};
-
-		template<typename Minimize = null_type,
+        /// Create an appearance of a window with "decoration"
+		template<   typename Minimize = null_type,
 					typename Maximize = null_type,
 					typename Sizable = null_type,
 					typename Floating = null_type,
@@ -173,8 +181,13 @@ namespace gui
 									);
 			}
 		};
-
-		template<typename Taskbar = null_type, typename Floating = null_type, typename NoActive = null_type, typename Minimize = null_type, typename Maximize = null_type, typename Sizable = null_type>
+        /// Create an appearance of a window without "decoration"
+		template < typename Taskbar  = null_type, 
+                   typename Floating = null_type, 
+                   typename NoActive = null_type, 
+                   typename Minimize = null_type, 
+                   typename Maximize = null_type, 
+                   typename Sizable  = null_type>
 		struct bald
 		{
 			typedef metacomp::fixed_type_set<Taskbar, Floating, NoActive, Minimize, Maximize, Sizable> set_type;
@@ -191,8 +204,12 @@ namespace gui
 									);
 			}
 		};
-
-		template<bool HasDecoration = true, typename Sizable = null_type, typename Taskbar = null_type, typename Floating = null_type, typename NoActive = null_type>
+        /// Create a window with decoration depending on the first non-type template parameter
+		template < bool HasDecoration = true, 
+                   typename Sizable = null_type, 
+                   typename Taskbar = null_type, 
+                   typename Floating = null_type, 
+                   typename NoActive = null_type>
 		struct optional
 		{
 			typedef metacomp::fixed_type_set<Taskbar, Floating, NoActive> set_type;

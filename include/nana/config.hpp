@@ -13,6 +13,16 @@
 #ifndef NANA_CONFIG_HPP
 #define NANA_CONFIG_HPP
 
+ // set to 0 to avoid preprocessor messages
+#define VERBOSE_PREPROCESSOR 1
+#if VERBOSE_PREPROCESSOR
+	#define STRING2(x) #x
+	#define STRING(x) STRING2(x)
+	#pragma message ("Verbose preprocessor: "  )
+	#pragma message ("Verbose preprocessor: " STRING(VERBOSE_PREPROCESSOR))
+#endif
+
+
 // Select platform  ......
 
 	 // Windows:
@@ -20,9 +30,18 @@
 
 		#define NANA_WINDOWS
 
+			#if VERBOSE_PREPROCESSOR
+				#pragma message ("Windows: _WIN32="STRING(_WIN32) ", __WIN32__="STRING(__WIN32__) " , WIN32=" STRING(WIN32))
+			#endif
+
 		// MINGW ...
 		#if defined(__MINGW32__) || defined(__MINGW64__) || defined(MINGW)
 			#define NANA_MINGW
+				#if VERBOSE_PREPROCESSOR
+					#pragma message ("MinGW: __MINGW32__="STRING(__MINGW32__) ", __MINGW64__="STRING(__MINGW64__) " , MINGW=" STRING(MINGW))
+					#pragma message ("MinGW: __MINGW32__=")				
+				#endif
+
 		#endif // MINGW
 
 	// end Windows
@@ -53,11 +72,26 @@
 
 // compilers ...
 
+// Clang
+#define __clang__
+#if defined(__clang__)
+	
+	#if VERBOSE_PREPROCESSOR
+		#pragma message ("Clang compiler: __clang__=" STRING(__clang__))
+	#endif
+// end __clang__
+
+
 // MSVC++ versions
-#if defined(_MSC_VER)
+#elif defined(_MSC_VER)
 	#define _SCL_SECURE_NO_WARNNGS
 	#define _CRT_SECURE_NO_DEPRECATE
 	#pragma warning(disable : 4996)
+
+	#if VERBOSE_PREPROCESSOR
+		#pragma message ("MSC: _MSC_VER="STRING(_MSC_VER) ", _MSC_FULL_VER"STRING(_MSC_FULL_VER ))
+	#endif
+
 
 	#if (_MSC_VER == 1900)
 		// google: break any code that tries to use codecvt<char16_t> or codecvt<char32_t>.
@@ -145,5 +179,5 @@
 	#endif
 #endif
 
-
+#undef STD_THREAD_NOT_SUPPORTED
 #endif	//NANA_CONFIG_HPP

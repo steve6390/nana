@@ -18,6 +18,12 @@
 #include <stdexcept>
 
 #include <nana/config.hpp>
+
+#if VERBOSE_PREPROCESSOR
+#include <nana/verbose_preprocessor.hpp>
+#endif
+
+
 #include <nana/charset.hpp>
 
 

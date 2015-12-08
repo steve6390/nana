@@ -69,8 +69,13 @@
 	#endif // _MSC_VER == 1900
 #endif // _MSVC
 
-//GCC
-#if defined(__GNUC__)
+#if defined(__clang__)
+	#if defined(__GLIBCPP__) || defined(__GLIBCXX__)
+		//<codecvt> is a known issue on libstdc++, it works on libc++
+		#define STD_CODECVT_NOT_SUPPORTED
+	#endif
+
+#elif defined(__GNUC__) //GCC
 	#if defined(__GLIBCPP__) || defined(__GLIBCXX__)
 		//<codecvt> is a known issue on libstdc++, it works on libc++
 		#define STD_CODECVT_NOT_SUPPORTED
@@ -99,6 +104,7 @@
 #endif
 
 
+
 // End compilers ...
 
 
@@ -111,7 +117,7 @@
 //#define NANA_ENABLE_PNG	//!
 //#define USE_LIBPNG_FROM_OS // Un-Comment it to use libpng from operating system.
 #if defined(NANA_ENABLE_PNG)
-	#if not defined(USE_LIBPNG_FROM_OS)
+	#if !defined(USE_LIBPNG_FROM_OS)
 		#define NANA_LIBPNG
 	#endif
 #endif
@@ -123,7 +129,7 @@
 //#define NANA_ENABLE_JPEG	//!
 //#define USE_LIBJPEG_FROM_OS // Un-Comment it to use libjpeg from operating system.
 #if defined(NANA_ENABLE_JPEG)
-	#if not defined(USE_LIBJPEG_FROM_OS)
+	#if !defined(USE_LIBJPEG_FROM_OS)
 		#define NANA_LIBJPEG
 	#endif
 #endif

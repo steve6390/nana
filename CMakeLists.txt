@@ -24,16 +24,27 @@ project(nana)
 cmake_minimum_required(VERSION 2.8)
 
 
-#Global MSVC definitions
 if(WIN32)
-	if(MSVC)
+    add_definitions(-DWIN32)
+
+    #Global MSVC definitions
+    if(MSVC)
 		option(WIN32_USE_MP "Set to ON to build nana with the /MP option (Visual Studio 2005 and above)." ON)
 		# ??
 		if(WIN32_USE_MP)
 			set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
 		endif()
-		
 	endif(MSVC)
+
+    if(MINGW)
+        add_definitions(-DMINGW)
+        #Find PNG
+        option(USE_meganz_mingw_std_threads "replaced boost.thread with meganz's mingw-std-threads.")
+        if(USE_meganz_mingw_std_threads)
+            add_definitions(-DUSE_github_com_meganz_mingw_std_threads)
+        endif()
+    endif()
+
 endif(WIN32)
 
 
@@ -60,10 +71,7 @@ if(UNIX)
 endif()
 
 if(WIN32)
-    add_definitions(-DWIN32)
-    if(MINGW)
-        add_definitions(-DMINGW)
-    endif()
+
 endif()
 
 #Find PNG
@@ -132,9 +140,9 @@ add_library(${PROJECT_NAME} ${NANA_SOURCE}
                             ${NANA_SYSTEM_SOURCE}
                             ${NANA_THREADS_SOURCE})       
 
-#if(APPLE)
-target_link_libraries(${PROJECT_NAME} -L/opt/X11/lib/ -lX11 -lXft -lpng -liconv)
-#endif()
+if(APPLE)
+    target_link_libraries(${PROJECT_NAME} -L/opt/X11/lib/ -lX11 -lXft -lpng -liconv)
+endif()
                  
 install(TARGETS ${PROJECT_NAME}
             ARCHIVE DESTINATION lib

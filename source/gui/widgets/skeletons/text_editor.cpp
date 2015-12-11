@@ -1312,7 +1312,7 @@ namespace nana{	namespace widgets
 
 		void text_editor::set_highlight(const std::string& name, const ::nana::color& fgcolor, const ::nana::color& bgcolor)
 		{
-			if (fgcolor.invisible() && fgcolor.invisible())
+			if (fgcolor.invisible() && fgcolor.invisible()) //  warning C6287: Redundant code:  the left and right sub-expressions are identical.
 			{
 				keywords_->schemes.erase(name);
 				return;

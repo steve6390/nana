@@ -7,9 +7,9 @@
  *	(See accompanying file LICENSE_1_0.txt or copy at 
  *	http://www.boost.org/LICENSE_1_0.txt)
  *
- *	@file: nana/gui/widgets/group.hpp
+ *	@file nana/gui/widgets/group.hpp
  *
- *	@Author: Stefan Pfeifer(st-321), Ariel Vina-Rodriguez (qPCR4vir)
+ *	@author Stefan Pfeifer(st-321), Ariel Vina-Rodriguez (qPCR4vir)
  *
  *	@brief group is a widget used to visually group and layout other widgets.
  */

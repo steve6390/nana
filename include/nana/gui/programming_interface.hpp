@@ -72,8 +72,8 @@ namespace API
 		widget_colors* get_scheme(window);
 
 		void attach_drawer(widget&, drawer_trigger&);
-		nana::string window_caption(window) throw();
-		void window_caption(window, nana::string);
+		::nana::detail::native_string_type window_caption(window) throw();
+		void window_caption(window, ::nana::detail::native_string_type);
 
 		window create_window(window, bool nested, const rectangle&, const appearance&, widget* attached);
 		window create_widget(window, const rectangle&, widget* attached);
@@ -140,7 +140,7 @@ namespace API
 
 	void exit();
 
-	nana::string transform_shortkey_text(nana::string text, nana::string::value_type &shortkey, nana::string::size_type *skpos);
+	std::string transform_shortkey_text(std::string text, wchar_t &shortkey, std::string::size_type *skpos);
 	bool register_shortkey(window, unsigned long);
 	void unregister_shortkey(window);
 
@@ -271,8 +271,8 @@ namespace API
 	void update_window(window);            ///< Copies the off-screen buffer to the screen for immediate display.
 
 	void window_caption(window, const std::string& title_utf8);
-	void window_caption(window, const nana::string& title);
-	nana::string window_caption(window);
+	void window_caption(window, const std::wstring& title);
+	::std::string window_caption(window);
 
 	void window_cursor(window, cursor);
 	cursor window_cursor(window);

@@ -164,13 +164,13 @@ namespace nana{	namespace drawerbase
 
 		void trigger::key_char(graph_reference, const arg_keyboard& arg)
 		{
-			if (static_cast<char_t>(keyboard::enter) == arg.key)
+			if (static_cast<wchar_t>(keyboard::enter) == arg.key)
 				emit_click();
 		}
 
 		void trigger::key_press(graph_reference graph, const arg_keyboard& arg)
 		{
-			if (keyboard::space == static_cast<char_t>(arg.key))
+			if (keyboard::space == static_cast<wchar_t>(arg.key))
 			{
 				_m_press(graph, true);
 				return;
@@ -193,7 +193,7 @@ namespace nana{	namespace drawerbase
 
 		void trigger::key_release(graph_reference graph, const arg_keyboard& arg)
 		{
-			if (arg.key != static_cast<char_t>(keyboard::space))
+			if (arg.key != static_cast<wchar_t>(keyboard::space))
 				return;
 
 			emit_click();
@@ -212,11 +212,10 @@ namespace nana{	namespace drawerbase
 
 		void trigger::_m_draw_title(graph_reference graph, bool enabled)
 		{
-			nana::string text = wdg_->caption();
-
-			nana::string::value_type shortkey;
-			nana::string::size_type shortkey_pos;
-			nana::string str = API::transform_shortkey_text(text, shortkey, &shortkey_pos);
+			wchar_t shortkey;
+			std::string::size_type shortkey_pos;
+			std::string mbstr = API::transform_shortkey_text(wdg_->caption(), shortkey, &shortkey_pos);
+			std::wstring str = to_wstring(mbstr);
 
 			nana::size ts = graph.text_extent_size(str);
 			nana::size gsize = graph.size();
@@ -237,7 +236,7 @@ namespace nana{	namespace drawerbase
 
 			unsigned omitted_pixels = gsize.width - icon_sz.width;
 			std::size_t txtlen = str.size();
-			const nana::char_t* txtptr = str.c_str();
+			const auto txtptr = str.c_str();
 			if(ts.width)
 			{
 				nana::paint::text_renderer tr(graph);
@@ -258,10 +257,17 @@ namespace nana{	namespace drawerbase
 
 					if(shortkey)
 					{
-						unsigned off_w = (shortkey_pos ? graph.text_extent_size(str, static_cast<unsigned>(shortkey_pos)).width : 0);
-						nana::size shortkey_size = graph.text_extent_size(txtptr + shortkey_pos, 1);
+						unsigned off_w = (shortkey_pos ? graph.text_extent_size(mbstr.c_str(), static_cast<unsigned>(shortkey_pos)).width : 0);
+
+						wchar_t keystr[2] = {nana::utf::char_at(mbstr.c_str() + shortkey_pos, 0, 0), 0};
+						auto shortkey_size = graph.text_extent_size(keystr, 1);
+
+						unsigned ascent, descent, inleading;
+						graph.text_metrics(ascent, descent, inleading);
+
 						pos.x += off_w;
-						pos.y += static_cast<int>(shortkey_size.height);
+						pos.y += static_cast<int>(ascent + 2);
+
 						graph.set_color(colors::black);
 						graph.line(pos, point{ pos.x + static_cast<int>(shortkey_size.width) - 1, pos.y });
 					}
@@ -398,13 +404,13 @@ namespace nana{	namespace drawerbase
 				create(wd, rectangle(), visible);
 			}
 
-			button::button(window wd, const nana::string& text, bool visible)
+			button::button(window wd, const std::string& text, bool visible)
 			{
 				create(wd, rectangle(), visible);
 				caption(text);
 			}
 
-			button::button(window wd, const nana::char_t* text, bool visible)
+			button::button(window wd, const char* text, bool visible)
 			{
 				create(wd, rectangle(), visible);
 				caption(text);
@@ -509,16 +515,18 @@ namespace nana{	namespace drawerbase
 				});
 			}
 
-			void button::_m_caption(nana::string&& text)
+			void button::_m_caption(native_string_type&& text)
 			{
 				API::unregister_shortkey(handle());
 
-				nana::char_t shortkey;
-				API::transform_shortkey_text(text, shortkey, 0);
+				native_string_type ntext = std::move(text);
+
+				wchar_t shortkey;
+				API::transform_shortkey_text(to_utf8(ntext), shortkey, nullptr);
 				if (shortkey)
 					API::register_shortkey(handle(), shortkey);
 
-				base_type::_m_caption(std::move(text));
+				base_type::_m_caption(std::move(ntext));
 			}
 		//end class button
 }//end namespace nana

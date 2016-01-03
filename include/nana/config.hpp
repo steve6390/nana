@@ -50,27 +50,26 @@
 	 // Windows:
 	#if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
 
-			#define NANA_WINDOWS
+		#define NANA_WINDOWS
 
 		// end Windows
 
 
-		 // MacOS:     who define APPLE ??
-		  //#define APPLE
-		#elif defined(APPLE)
-			#define NANA_MACOS
-			#define NANA_X11
+	 // MacOS:     who define APPLE ??
+      //#define APPLE
+    #elif defined(APPLE)
+		#define NANA_MACOS
+		#define NANA_X11
 		// how to add this:  include_directories(/opt/X11/include/)
-		// end MacOS
+	// end MacOS
 
-		 // Linux:    (not sure about __GNU__ ??)
-		#elif (defined(linux) || defined(__linux) || defined(__linux__) || defined(__GNU__) || defined(__GLIBC__)) && !defined(_CRAYC)
-			#define NANA_LINUX
-			#define NANA_X11
-		// end Linux
-
-		#else
-		#error( "Only Windows and Unix are supported now (Mac OS is experimental)");
+	 // Linux:    (not sure about __GNU__ ??)
+	#elif (defined(linux) || defined(__linux) || defined(__linux__) || defined(__GNU__) || defined(__GLIBC__)) && !defined(_CRAYC)
+		#define NANA_LINUX
+		#define NANA_X11
+	// end Linux
+	#else
+	#	static_assert(false, "Only Windows and Unix are supported now (Mac OS is experimental)");
 	#endif // Select platform
 
 	#if defined(NANA_LINUX) || defined(NANA_MACOS)

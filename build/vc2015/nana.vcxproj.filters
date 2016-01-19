@@ -84,13 +84,7 @@
     <ClCompile Include="..\..\source\audio\player.cpp">
       <Filter>Source Files\audio</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\filesystem\file_iterator.cpp">
-      <Filter>Source Files\filesystem</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\filesystem\filesystem.cpp">
-      <Filter>Source Files\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\filesystem\fs_utility.cpp">
       <Filter>Source Files\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\gui\detail\basic_window.cpp">

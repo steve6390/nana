@@ -154,9 +154,14 @@
 	#endif
 #endif
 
-//<codecvt> is a known issue on libstdc++, it works on libc++
 #if defined(__GLIBCPP__) || defined( __GLIBCXX__ )
+    //<codecvt> is a known issue on libstdc++, it works on libc++
 	#define STD_CODECVT_NOT_SUPPORTED
+	
+	#ifdef __cpp_lib_make_unique
+		#define STD_MAKE_UNIQUE_NOT_SUPPORTED
+	#endif
+		
 #endif // __GLIBCPP__ or __GLIBCXX__
 
 

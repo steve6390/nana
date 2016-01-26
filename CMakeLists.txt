@@ -18,7 +18,7 @@ option(LIBJPEG_FROM_OS "Use libjpeg from operating system." ON)
 option(CMAKE_VERBOSE_PREPROCESSOR "Show annoying debug messages during compilation." OFF)
 option(CMAKE_STOP_VERBOSE_PREPROCESSOR "Stop compilation after showing the annoying debug messages." ON)
 option(BUILD_NANA_DEMOS "Build all the demos form the nana_demo repository." OFF)
-option(CMAKE_STD_make_unique_NOT_SUPPORTED "Add support for make_unique<>()." OFF)
+option(CMAKE_STD_make_unique_NOT_SUPPORTED "Add support for std::make_unique<>()." OFF)
 #set(CMAKE_STD_make_unique_NOT_SUPPORTED OFF)
 
 # set compile  flags
@@ -44,7 +44,7 @@ cmake_minimum_required(VERSION 2.8)
 if(WIN32)
     add_definitions(-DWIN32)
 
-    #Global MSVC definitions
+    #Global MSVC definitions. You may prefer the hand-tuned sln and projects from the nana repository.
     if(MSVC)
 		option(WIN32_USE_MP "Set to ON to build nana with the /MP option (Visual Studio 2005 and above)." ON)
 		# ??

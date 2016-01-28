@@ -15,6 +15,9 @@ matrix:
             - g++-5
             - libjpeg8-dev
             - libpng-dev
+            - libasound2-dev
+            - alsa-utils
+            - alsa-oss
           sources: &sources
             - ubuntu-toolchain-r-test
             - llvm-toolchain-precise
@@ -27,6 +30,9 @@ matrix:
             - g++-4.9
             - libjpeg8-dev
             - libpng-dev
+            - libasound2-dev
+            - alsa-utils
+            - alsa-oss
           sources: *sources
     - env: CXX=clang++-3.8 CC=clang-3.8
       addons:
@@ -35,6 +41,9 @@ matrix:
             - clang-3.8
             - libjpeg8-dev
             - libpng-dev
+            - libasound2-dev
+            - alsa-utils
+            - alsa-oss
           sources: *sources
     - env: CXX=clang++-3.7 CC=clang-3.7
       addons:
@@ -43,6 +52,9 @@ matrix:
             - clang-3.7
             - libjpeg8-dev
             - libpng-dev
+            - libasound2-dev
+            - alsa-utils
+            - alsa-oss
           sources: *sources
     - env: CXX=clang++-3.6 CC=clang-3.6
       addons:
@@ -51,6 +63,9 @@ matrix:
             - clang-3.6
             - libjpeg8-dev
             - libpng-dev
+            - libasound2-dev
+            - alsa-utils
+            - alsa-oss
           sources: *sources
 
 before_install:

@@ -1,4 +1,4 @@
-# CMake configuration for Nana
+﻿# CMake configuration for Nana
 # Author: Andrew Kornilov(https://github.com/ierofant)
 # Contributor:
 #	Robert Hauck - Enable support for PNG/Freetype
@@ -7,25 +7,22 @@
 
 #https://cmake.org/cmake-tutorial/
 #https://cmake.org/cmake/help/v3.3/module/CMakeDependentOption.html?highlight=cmakedependentoption
-# use CACHE FORCE  or set(USE_meganz_mingw_std_threads ON) or delete CMakecache.txt or the entirely build dir
+# use CACHE FORCE  or set(ENABLE_MINGW_STD_THREADS_WITH_MEGANZ ON) or delete CMakecache.txt or the entirely build dir
 # if your changes don't execute
-option(USE_meganz_mingw_std_threads "replaced boost.thread with meganz's mingw-std-threads." OFF)
-option(USE_UNICODE "Use Unicode Character Set" ON)
+option(ENABLE_MINGW_STD_THREADS_WITH_MEGANZ "replaced boost.thread with meganz's mingw-std-threads." OFF)
 option(ENABLE_PNG "Enable the use of PNG" OFF)
 option(LIBPNG_FROM_OS "Use libpng from operating system." ON)
 option(ENABLE_JPEG "Enable the use of JPEG" OFF)
 option(LIBJPEG_FROM_OS "Use libjpeg from operating system." ON)
+option(ENABLE_AUDIO "Enable class audio::play for PCM playback." OFF)
 option(CMAKE_VERBOSE_PREPROCESSOR "Show annoying debug messages during compilation." OFF)
 option(CMAKE_STOP_VERBOSE_PREPROCESSOR "Stop compilation after showing the annoying debug messages." ON)
 option(BUILD_NANA_DEMOS "Build all the demos form the nana_demo repository." OFF)
-option(CMAKE_STD_make_unique_NOT_SUPPORTED "Add support for std::make_unique<>()." OFF)
-#set(CMAKE_STD_make_unique_NOT_SUPPORTED OFF)
 
 # set compile  flags
 if(CMAKE_COMPILER_IS_GNUCXX OR "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
 endif(CMAKE_COMPILER_IS_GNUCXX OR "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
-
 
 # move this to the end ??
 if(BIICODE)
@@ -40,6 +37,7 @@ endif(BIICODE)
 project(nana)
 cmake_minimum_required(VERSION 2.8)
 
+add_definitions(-DNANA_IGNORE_CONF)
 
 if(WIN32)
     add_definitions(-DWIN32)
@@ -54,21 +52,12 @@ if(WIN32)
 	endif(MSVC)
 
     if(MINGW)
-        add_definitions(-DMINGW)
-        #Find PNG
-        if(USE_meganz_mingw_std_threads)
-            add_definitions(-DUSE_github_com_meganz_mingw_std_threads)
-            # remove_definitions()
-        endif(USE_meganz_mingw_std_threads)
+        if(ENABLE_MINGW_STD_THREADS_WITH_MEGANZ)
+            add_definitions(-DNANA_ENABLE_MINGW_STD_THREADS_WITH_MEGANZ)
+        endif(ENABLE_MINGW_STD_THREADS_WITH_MEGANZ)
     endif(MINGW)
-
 endif(WIN32)
 
-
-#Unicode
-if(USE_UNICODE)
-    add_definitions(-DNANA_UNICODE)
-endif(USE_UNICODE)
 
 if(APPLE)
     add_definitions(-DAPPLE)
@@ -110,21 +99,26 @@ if(ENABLE_JPEG)
     endif(LIBJPEG_FROM_OS)
 endif(ENABLE_JPEG)
 
-
+if(ENABLE_AUDIO)
+    add_definitions(-DNANA_ENABLE_AUDIO)
+    if(UNIX)
+        find_package(asound)
+        if (ASOUND_FOUND)
+            include_directories( ${ASOUND_INCLUDE_DIRS})
+        else(ASOUND_FOUND)
+            message(FATAL_ERROR "libasound is not found")
+        endif(ASOUND_FOUND)
+    endif(UNIX)
+endif(ENABLE_AUDIO)
 
 #Unicode
 if(CMAKE_VERBOSE_PREPROCESSOR)
     add_definitions(-DVERBOSE_PREPROCESSOR)
 endif(CMAKE_VERBOSE_PREPROCESSOR)
 
-# STD_make_unique_NOT_SUPPORTED
-if(CMAKE_STD_make_unique_NOT_SUPPORTED)
-    add_definitions(-DSTD_make_unique_NOT_SUPPORTED)
-endif(CMAKE_STD_make_unique_NOT_SUPPORTED)
 
-
-set(NANA_SOURCE_DIR ${CMAKE_SOURCE_DIR}/source)
-set(NANA_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
+set(NANA_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/source)
+set(NANA_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 include_directories(${NANA_INCLUDE_DIR})
 aux_source_directory(${NANA_SOURCE_DIR} NANA_SOURCE)

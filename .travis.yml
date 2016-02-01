@@ -13,8 +13,8 @@ matrix:
         apt:
           packages:
             - g++-5
-            #- libjpeg8-dev
-            #- libpng-dev
+            - libjpeg8-dev
+            - libpng-dev
             - libasound2-dev
             - alsa-utils
             - alsa-oss
@@ -28,8 +28,8 @@ matrix:
         apt:
           packages:
             - g++-4.9
-            #- libjpeg8-dev
-            #- libpng-dev
+            - libjpeg8-dev
+            - libpng-dev
             - libasound2-dev
             - alsa-utils
             - alsa-oss
@@ -39,8 +39,8 @@ matrix:
         apt:
           packages:
             - clang-3.8
-            #- libjpeg8-dev
-            #- libpng-dev
+            - libjpeg8-dev
+            - libpng-dev
             - libasound2-dev
             - alsa-utils
             - alsa-oss
@@ -50,8 +50,8 @@ matrix:
         apt:
           packages:
             - clang-3.7
-            #- libjpeg8-dev
-            #- libpng-dev
+            - libjpeg8-dev
+            - libpng-dev
             - libasound2-dev
             - alsa-utils
             - alsa-oss
@@ -61,8 +61,8 @@ matrix:
         apt:
           packages:
             - clang-3.6
-            #- libjpeg8-dev
-            #- libpng-dev
+            - libjpeg8-dev
+            - libpng-dev
             - libasound2-dev
             - alsa-utils
             - alsa-oss
@@ -82,6 +82,6 @@ before_script :
   - cd bld
 
 script:
-  - cmake -G"Unix Makefiles" ..
+  - cmake -G"Unix Makefiles" .. -DENABLE_JPEG=ON -DENABLE_PNG=ON
   #-DENABLE_JPEG=ON -DENABLE_PNG=ON
   - make

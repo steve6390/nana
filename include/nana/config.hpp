@@ -14,12 +14,19 @@
  *	External libraries:
  *	- NANA_LIBPNG, USE_LIBPNG_FROM_OS
  *	- NANA_LIBJPEG, USE_LIBJPEG_FROM_OS
+ *
+ *	messages:
+ *	- VERBOSE_PREPROCESSOR, STOP_VERBOSE_PREPROCESSOR
  */
 
 #ifndef NANA_CONFIG_HPP
 #define NANA_CONFIG_HPP
 
 #include "c++defines.hpp"
+
+//The basic configurations are ignored when NANA_IGNORE_CONF is defined.
+//The NANA_IGNORE_CONF may be specified by CMake generated makefile.
+#ifndef NANA_IGNORE_CONF
 
 // Here defines some flags that tell Nana what features will be supported.
 
@@ -30,6 +37,11 @@
 //if NANA_ENABLE_MINGW_STD_THREADS_WITH_MEGANZ is enabled, Boost.Thread will be replaced with meganz's mingw-std-threads.
 //https://github.com/meganz/mingw-std-threads
 //#define NANA_ENABLE_MINGW_STD_THREADS_WITH_MEGANZ
+
+///////////////////
+//Support of PCM playback
+//
+//#define NANA_ENABLE_AUDIO
 
 ///////////////////
 //Support for PNG
@@ -55,30 +67,13 @@
 	#endif
 #endif
 
-
-
-// always define NANA_UNICODE ?? it will be deprecated ?.
-#ifndef NANA_UNICODE
-	#define NANA_UNICODE
-#endif
-
-#if defined(NANA_UNICODE) && defined(NANA_WINDOWS)
-	#ifndef _UNICODE
-		#define _UNICODE
-	#endif
-
-	#ifndef UNICODE
-		#define UNICODE
-	#endif
-#endif
-
 #if !defined(VERBOSE_PREPROCESSOR)
-    //#define VERBOSE_PREPROCESSOR
+//#define VERBOSE_PREPROCESSOR
 #endif
 
 #if !defined(STOP_VERBOSE_PREPROCESSOR)
-	#define STOP_VERBOSE_PREPROCESSOR
+#define STOP_VERBOSE_PREPROCESSOR
 #endif
 
-
+#endif  // NANA_IGNORE_CONFIG
 #endif  // NANA_CONFIG_HPP

@@ -1,4 +1,4 @@
-﻿# CMake configuration for Nana
+﻿﻿# CMake configuration for Nana
 # Author: Andrew Kornilov(https://github.com/ierofant)
 # Contributor:
 #	Robert Hauck - Enable support for PNG/Freetype

@@ -1166,7 +1166,11 @@ namespace nana
 					layouter_->event_agent(evt);
 				}
 
-				void trigger::insert(std::size_t pos, native_string_type&& text, nana::any&& value)
+#ifdef NANA_WORKAROUND_STD_MOVE
+			    void trigger::insert(std::size_t pos, native_string_type  text, nana::any&& value)
+#else
+			    void trigger::insert(std::size_t pos, native_string_type&& text, nana::any&& value)
+#endif
 				{
 					layouter_->insert(pos, std::move(text), std::move(value));
 				}

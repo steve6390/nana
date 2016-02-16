@@ -163,7 +163,11 @@ namespace nana
 				const pat::cloneable<item_renderer> & ext_renderer() const;
 				void ext_renderer(const pat::cloneable<item_renderer>&);
 				void set_event_agent(event_agent_interface*);
-				void insert(std::size_t, native_string_type&&, nana::any&&);
+#ifdef NANA_WORKAROUND_STD_MOVE
+				void insert(std::size_t pos, native_string_type  text, nana::any&& value);
+#else
+				void insert(std::size_t pos, native_string_type&& text, nana::any&& value);
+#endif
 				std::size_t length() const;
 				bool close_fly(bool);
 				void attach(std::size_t, window);

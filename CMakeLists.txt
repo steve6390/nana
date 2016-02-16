@@ -214,6 +214,7 @@ if (BUILD_NANA_DEMOS)
     target_link_libraries(file_explorer ${PROJECT_NAME} )
     install(TARGETS file_explorer RUNTIME DESTINATION &{DEMO_BIN})
 
+	
 
 	endif(OFF)
 	

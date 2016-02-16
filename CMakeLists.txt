@@ -18,6 +18,11 @@ option(ENABLE_AUDIO "Enable class audio::play for PCM playback." OFF)
 option(CMAKE_VERBOSE_PREPROCESSOR "Show annoying debug messages during compilation." OFF)
 option(CMAKE_STOP_VERBOSE_PREPROCESSOR "Stop compilation after showing the annoying debug messages." ON)
 option(BUILD_NANA_DEMOS "Build all the demos form the nana_demo repository." OFF)
+#  if  std::move(text) return something like: std::remove_reference<std::basic_string<wchar_t>&>::type
+#  instead of:                                std::remove_reference<std::basic_string<wchar_t>>::type&&
+#  like in: https://travis-ci.org/qPCR4vir/nana/jobs/109380720
+option(CMAKE_WORKAROUND_STD_MOVE "Problems with std::move taking r-references?" OFF)
+
 
 
 set(NANA_LINKS)
@@ -120,6 +125,10 @@ endif(ENABLE_AUDIO)
 if(CMAKE_VERBOSE_PREPROCESSOR)
     add_definitions(-DVERBOSE_PREPROCESSOR)
 endif(CMAKE_VERBOSE_PREPROCESSOR)
+
+if (CMAKE_WORKAROUND_STD_MOVE)
+    add_definitions(-DNANA_WORKAROUND_STD_MOVE)
+endif (CMAKE_WORKAROUND_STD_MOVE)
 
 
 set(NANA_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/source)

@@ -39,6 +39,14 @@
 //https://github.com/meganz/mingw-std-threads
 //#define NANA_ENABLE_MINGW_STD_THREADS_WITH_MEGANZ
 
+
+////////////////////////////
+//  Problems with std::move taking r-references?
+//    if  std::move(text) return something like: std::remove_reference<std::basic_string<wchar_t>&>::type
+//    instead of:                                std::remove_reference<std::basic_string<wchar_t>>::type&&
+//    like in: https://travis-ci.org/qPCR4vir/nana/jobs/109380720
+//#define NANA_WORKAROUND_STD_MOVE
+
 ///////////////////
 //Support of PCM playback
 //
